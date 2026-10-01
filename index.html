@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>by Cikgu Myra | Simplified Learning Materials</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Fredoka', 'sans-serif'],
+            body: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              pink: '#E8A3A8',
+              'pink-light': '#FDF0F1',
+              peach: '#FFEFE5',
+              'peach-btn': '#E8A3A8',
+              lavender: '#F1EFFB',
+              mint: '#EBF6F2',
+              yellow: '#FFF8E7',
+              cream: '#FAFAFA',
+              text: '#333745',
+              muted: '#7E859B',
+            }
+          },
+          boxShadow: {
+            'clay-card': '0 10px 25px -5px rgba(220, 210, 210, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.8)',
+            'clay-btn': '0 8px 15px -3px rgba(232, 163, 168, 0.4), inset 0 2px 3px rgba(255, 255, 255, 0.6)',
+            'soft': '0 10px 30px rgba(0, 0, 0, 0.04)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar for Horizontal Carousels */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Subtle Floating Animation for Hero Illustration */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(1deg); }
+    }
+    .animate-float {
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+
+    /* Hand-drawn accent mark styling */
+    .accent-sparkle {
+      position: relative;
+    }
+    .accent-sparkle::after {
+      content: '🪄';
+      font-size: 14px;
+      position: absolute;
+      top: -12px;
+      right: -18px;
+    }
+  </style>
+</head>
+
+<body class="bg-[#FBF9F6] text-brand-text font-body antialiased min-h-screen pb-12 selection:bg-brand-pink/20 selection:text-brand-pink">
+
+  <!-- MAIN CONTAINER (Mobile-First Frame) -->
+  <div class="max-w-md mx-auto min-h-screen bg-[#FAF8F5] relative overflow-hidden shadow-2xl md:my-6 md:rounded-[40px] md:border-[8px] md:border-white">
+
+    <!-- TOP BAR / STATUS SPACER -->
+    <div class="px-6 pt-5 pb-2 flex justify-between items-center text-xs font-semibold text-gray-400">
+      <span>9:41</span>
+      <div class="flex items-center gap-1.5">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.22 19.57 10.57 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4z"/></svg>
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17 4h-3V2h-4v2H7c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z"/></svg>
+      </div>
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="px-6 py-3 flex justify-between items-center relative z-20">
+      <a href="#" class="flex items-center gap-1.5 group">
+        <span class="font-display text-2xl font-bold tracking-tight text-brand-text">
+          by <span class="text-brand-text">Cikgu Myra</span>
+        </span>
+        <span class="text-brand-pink text-sm animate-pulse">💕</span>
+      </a>
+
+      <!-- Hamburger Menu Button -->
+      <button onclick="toggleMenu()" class="w-10 h-10 rounded-2xl bg-white/80 shadow-sm border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-white transition active:scale-95">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </header>
+
+    <!-- MOBILE MENU DROPDOWN -->
+    <div id="navMenu" class="hidden absolute top-20 right-6 left-6 bg-white/95 backdrop-blur-md rounded-3xl p-5 shadow-2xl border border-white z-30 flex-col gap-3 text-center font-display font-medium text-lg text-gray-700">
+      <a href="#hero" onclick="toggleMenu()" class="py-2 hover:text-brand-pink transition">Home</a>
+      <a href="#year2" onclick="toggleMenu()" class="py-2 hover:text-brand-pink transition">Science Year 5</a>
+      <a href="#form2" onclick="toggleMenu()" class="py-2 hover:text-brand-pink transition">Sains Tingkatan 2</a>
+      <a href="#about" onclick="toggleMenu()" class="py-2 hover:text-brand-pink transition">About Me</a>
+      <a href="#contact" onclick="toggleMenu()" class="py-2 hover:text-brand-pink transition">Contact</a>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="px-6 pt-2 pb-6 relative">
+      <!-- Background Pastel Blob -->
+      <div class="absolute top-0 right-0 w-64 h-64 bg-amber-100/40 rounded-full blur-3xl -z-10"></div>
+      
+      <div class="flex flex-col gap-1">
+        <div class="flex items-center gap-1.5">
+          <h1 class="font-display text-[34px] leading-[1.1] font-bold text-brand-text tracking-tight">
+            Learning<br>Made Simple<span class="text-brand-pink">.</span>
+          </h1>
+          <span class="text-xl text-amber-400 font-bold ml-1">✏️</span>
+        </div>
+        
+        <p class="text-brand-muted text-sm leading-relaxed max-w-[240px] mt-2 font-normal">
+          Simplified learning materials for students, tutors & parents.
+        </p>
+
+        <div class="mt-4">
+          <a href="#year2" class="inline-flex items-center gap-2 bg-brand-pink hover:bg-rose-400 text-white font-display font-medium text-sm px-6 py-3 rounded-full shadow-clay-btn transition transform active:scale-95">
+            Explore Products
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 3D HERO CLAYMorphism VISUAL -->
+      <div class="mt-6 relative flex justify-center animate-float">
+        <div class="w-full max-w-[320px] aspect-square relative rounded-3xl p-4 flex items-center justify-center">
+          
+          <!-- Rendered 3D Clay Illustration Representation using SVG -->
+          <svg viewBox="0 0 400 400" class="w-full h-full drop-shadow-xl overflow-visible">
+            <defs>
+              <linearGradient id="globeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#A2E3ED" />
+                <stop offset="100%" stop-color="#4DB6AC" />
+              </linearGradient>
+              <linearGradient id="bookPink" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#F8BBD0" />
+                <stop offset="100%" stop-color="#F48FB1" />
+              </linearGradient>
+              <linearGradient id="bookBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#B2EBF2" />
+                <stop offset="100%" stop-color="#80DEEA" />
+              </linearGradient>
+            </defs>
+
+            <!-- Shadow Base -->
+            <ellipse cx="200" cy="340" rx="140" ry="20" fill="#E2DED9" opacity="0.6" />
+
+            <!-- Globe Base & Stand -->
+            <path d="M 280 180 A 60 60 0 1 0 280 280" fill="none" stroke="#D7CCC8" stroke-width="12" stroke-linecap="round" />
+            <rect x="270" y="280" width="20" height="30" rx="5" fill="#BCAAA4" />
+            <ellipse cx="280" cy="315" rx="35" ry="10" fill="#8D6E63" />
+
+            <!-- Globe Sphere -->
+            <circle cx="280" cy="180" r="55" fill="url(#globeGrad)" />
+            <!-- Continents -->
+            <path d="M 250 160 Q 270 150 285 175 Q 270 190 250 160 Z" fill="#81C784" opacity="0.9" />
+            <path d="M 290 190 Q 310 180 320 200 Q 295 210 290 190 Z" fill="#81C784" opacity="0.9" />
+
+            <!-- Stacked Books Base -->
+            <!-- Math Book (Bottom) -->
+            <rect x="130" y="275" width="170" height="32" rx="10" fill="url(#bookPink)" />
+            <rect x="125" y="280" width="10" height="22" rx="3" fill="#E91E63" opacity="0.4" />
+            <text x="200" y="297" font-family="Fredoka" font-size="16" font-weight="bold" fill="#880E4F" text-anchor="middle" letter-spacing="2">MATH</text>
+
+            <!-- Science Book (Top) -->
+            <rect x="110" y="240" width="180" height="35" rx="10" fill="url(#bookBlue)" />
+            <rect x="105" y="245" width="10" height="25" rx="3" fill="#0097A7" opacity="0.4" />
+            <text x="195" y="263" font-family="Fredoka" font-size="17" font-weight="bold" fill="#006064" text-anchor="middle" letter-spacing="2">SCIENCE</text>
+
+            <!-- Cute Plant Pot -->
+            <rect x="80" y="180" width="55" height="50" rx="15" fill="#FFFFFF" />
+            <!-- Face on pot -->
+            <circle cx="97" cy="205" r="3" fill="#333" />
+            <circle cx="118" cy="205" r="3" fill="#333" />
+            <path d="M 104 212 Q 107 217 110 212" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" />
+            <!-- Plant Leaves -->
+            <path d="M 107 180 C 80 140 107 120 107 180 Z" fill="#66BB6A" />
+            <path d="M 107 180 C 135 140 107 120 107 180 Z" fill="#81C784" />
+
+            <!-- Pencil Glass Cup -->
+            <rect x="190" y="150" width="40" height="55" rx="10" fill="#E0F7FA" opacity="0.8" stroke="#B2EBF2" stroke-width="2" />
+            <rect x="198" y="120" width="8" height="40" rx="2" fill="#FFB74D" transform="rotate(-10 198 120)" />
+            <rect x="210" y="115" width="8" height="45" rx="2" fill="#4FC3F7" transform="rotate(5 210 115)" />
+            <rect x="220" y="122" width="6" height="38" rx="2" fill="#E1BEE7" transform="rotate(15 220 122)" />
+
+            <!-- Floating Cute Elements -->
+            <!-- Star -->
+            <path d="M 320 230 L 324 240 L 335 240 L 326 247 L 329 257 L 320 250 L 311 257 L 314 247 L 305 240 L 316 240 Z" fill="#FFD54F" />
+            <circle cx="330" cy="110" r="6" fill="#FFE082" />
+            <circle cx="70" cy="140" r="4" fill="#FF8A80" />
+            
+            <!-- Flask -->
+            <path d="M 325 285 L 335 285 L 342 305 A 10 10 0 0 1 332 318 L 328 318 A 10 10 0 0 1 318 305 Z" fill="#E1F5FE" stroke="#81D4FA" stroke-width="2" />
+            <path d="M 322 305 L 338 305 L 333 315 L 327 315 Z" fill="#29B6F6" />
+          </svg>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: SCIENCE YEAR 5 CAROUSEL -->
+    <section id="year2" class="pt-4 pb-6">
+      <div class="px-6 flex items-center justify-between">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-amber-100/80 px-3.5 py-1 rounded-full border border-amber-200/50">
+            <h2 class="font-display font-bold text-lg text-brand-text">Science Year 5</h2>
+            <span class="text-xs">✨</span>
+          </div>
+          <p class="text-xs text-brand-muted mt-1">Simple notes made easier to understand.</p>
+        </div>
+
+        <!-- Navigation Arrows for Desktop/Tablet -->
+        <div class="flex items-center gap-1.5">
+          <button onclick="scrollCarousel('carouselYear5', -220)" class="w-8 h-8 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90">
+            ←
+          </button>
+          <button onclick="scrollCarousel('carouselYear5', 220)" class="w-8 h-8 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90">
+            →
+          </button>
+        </div>
+      </div>
+
+      <!-- CAROUSEL TRACK -->
+      <div id="carouselYear5" class="flex gap-4 overflow-x-auto no-scrollbar px-6 pt-4 pb-4 snap-x snap-mandatory">
+        
+        <!-- CARD 1: PEACH / PLANTS -->
+        <div class="min-w-[210px] w-[210px] bg-[#FFF5EE] rounded-[28px] p-4 flex flex-col justify-between border border-orange-100/80 shadow-soft snap-start transform transition hover:-translate-y-1">
+          <div>
+            <span class="inline-block bg-orange-200/60 text-orange-800 text-[10px] font-display font-semibold px-2.5 py-0.5 rounded-full mb-2">
+              Unit 1
+            </span>
+            <div class="h-28 flex items-center justify-center my-1">
+              <!-- 3D Clay Plant Illustration -->
+              <svg viewBox="0 0 120 120" class="w-24 h-24">
+                <ellipse cx="60" cy="100" rx="35" ry="8" fill="#E2D0C3" />
+                <path d="M 40 95 C 40 70 80 70 80 95 Z" fill="#8D6E63" />
+                <path d="M 60 75 L 60 45" stroke="#4CAF50" stroke-width="6" stroke-linecap="round" />
+                <!-- Leaves -->
+                <path d="M 60 55 C 30 35 40 15 60 45 Z" fill="#66BB6A" />
+                <path d="M 60 55 C 90 35 80 15 60 45 Z" fill="#81C784" />
+                <!-- Magnifying Glass -->
+                <circle cx="80" cy="50" r="16" fill="none" stroke="#4FC3F7" stroke-width="5" />
+                <path d="M 92 62 L 105 75" stroke="#FF7043" stroke-width="6" stroke-linecap="round" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-base text-brand-text">Plants</h3>
+            <p class="text-[11px] text-brand-muted leading-tight mt-1">Learn about plants and their needs.</p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-orange-100/60">
+            <div class="font-display font-bold text-sm text-brand-text mb-2">RM3.90</div>
+            <a href="#TOYYIBPAY-LINK-UNIT1" class="block w-full text-center bg-[#E8A3A8] hover:bg-rose-400 text-white font-display font-medium text-xs py-2 rounded-xl shadow-sm transition active:scale-95">
+              BUY NOW
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 2: LAVENDER / ANIMALS -->
+        <div class="min-w-[210px] w-[210px] bg-[#F3F0FD] rounded-[28px] p-4 flex flex-col justify-between border border-purple-100/80 shadow-soft snap-start transform transition hover:-translate-y-1">
+          <div>
+            <span class="inline-block bg-purple-200/60 text-purple-800 text-[10px] font-display font-semibold px-2.5 py-0.5 rounded-full mb-2">
+              Unit 2
+            </span>
+            <div class="h-28 flex items-center justify-center my-1">
+              <!-- 3D Clay Bunny Illustration -->
+              <svg viewBox="0 0 120 120" class="w-24 h-24">
+                <ellipse cx="60" cy="100" rx="30" ry="7" fill="#D7D3E8" />
+                <!-- Bunny Body & Head -->
+                <circle cx="60" cy="75" r="22" fill="#FFFFFF" />
+                <circle cx="60" cy="52" r="18" fill="#FFFFFF" />
+                <!-- Ears -->
+                <ellipse cx="52" cy="28" rx="5" ry="14" fill="#FFFFFF" transform="rotate(-10 52 28)" />
+                <ellipse cx="52" cy="28" rx="2.5" ry="10" fill="#FFCDD2" transform="rotate(-10 52 28)" />
+                <ellipse cx="68" cy="28" rx="5" ry="14" fill="#FFFFFF" transform="rotate(10 68 28)" />
+                <ellipse cx="68" cy="28" rx="2.5" ry="10" fill="#FFCDD2" transform="rotate(10 68 28)" />
+                <!-- Face -->
+                <circle cx="54" cy="50" r="2" fill="#333" />
+                <circle cx="66" cy="50" r="2" fill="#333" />
+                <ellipse cx="60" cy="54" rx="2" ry="1.5" fill="#FF8A80" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-base text-brand-text">Animals</h3>
+            <p class="text-[11px] text-brand-muted leading-tight mt-1">Explore different animals and their characteristics.</p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-purple-100/60">
+            <div class="font-display font-bold text-sm text-brand-text mb-2">RM3.90</div>
+            <a href="#TOYYIBPAY-LINK-UNIT2" class="block w-full text-center bg-[#B4A0E5] hover:bg-purple-500 text-white font-display font-medium text-xs py-2 rounded-xl shadow-sm transition active:scale-95">
+              BUY NOW
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 3: MINT / HUMANS -->
+        <div class="min-w-[210px] w-[210px] bg-[#EBF6F2] rounded-[28px] p-4 flex flex-col justify-between border border-emerald-100/80 shadow-soft snap-start transform transition hover:-translate-y-1">
+          <div>
+            <span class="inline-block bg-emerald-200/60 text-emerald-800 text-[10px] font-display font-semibold px-2.5 py-0.5 rounded-full mb-2">
+              Unit 3
+            </span>
+            <div class="h-28 flex items-center justify-center my-1">
+              <!-- 3D Clay Human Boy Illustration -->
+              <svg viewBox="0 0 120 120" class="w-24 h-24">
+                <ellipse cx="60" cy="100" rx="30" ry="7" fill="#C8E6C9" />
+                <!-- Shirt -->
+                <path d="M 40 95 L 40 75 C 40 68 80 68 80 75 L 80 95 Z" fill="#81D4FA" />
+                <!-- Head -->
+                <circle cx="60" cy="52" r="18" fill="#FFCC80" />
+                <!-- Hair -->
+                <path d="M 42 50 C 42 30 78 30 78 50 C 70 38 50 38 42 50 Z" fill="#5D4037" />
+                <!-- Heart Icon -->
+                <path d="M 85 50 C 85 45 92 42 95 47 C 98 42 105 45 105 50 C 105 58 95 63 95 63 C 95 63 85 58 85 50 Z" fill="#FF5252" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-base text-brand-text">Humans</h3>
+            <p class="text-[11px] text-brand-muted leading-tight mt-1">Discover the basic parts and needs of the human body.</p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-emerald-100/60">
+            <div class="font-display font-bold text-sm text-brand-text mb-2">RM3.90</div>
+            <a href="#TOYYIBPAY-LINK-UNIT3" class="block w-full text-center bg-[#72C8A9] hover:bg-emerald-600 text-white font-display font-medium text-xs py-2 rounded-xl shadow-sm transition active:scale-95">
+              BUY NOW
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 4: YELLOW / LIVING THINGS -->
+        <div class="min-w-[210px] w-[210px] bg-[#FFF8E7] rounded-[28px] p-4 flex flex-col justify-between border border-amber-100/80 shadow-soft snap-start transform transition hover:-translate-y-1">
+          <div>
+            <span class="inline-block bg-amber-200/60 text-amber-800 text-[10px] font-display font-semibold px-2.5 py-0.5 rounded-full mb-2">
+              Unit 4
+            </span>
+            <div class="h-28 flex items-center justify-center my-1">
+              <svg viewBox="0 0 120 120" class="w-24 h-24">
+                <circle cx="60" cy="50" r="15" fill="#FFE082" />
+                <path d="M 60 75 L 60 95" stroke="#81C784" stroke-width="5" stroke-linecap="round" />
+                <circle cx="60" cy="95" r="10" fill="#A1887F" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-base text-brand-text">Living Things</h3>
+            <p class="text-[11px] text-brand-muted leading-tight mt-1">Understand living vs non-living characteristics.</p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-amber-100/60">
+            <div class="font-display font-bold text-sm text-brand-text mb-2">RM3.90</div>
+            <a href="#TOYYIBPAY-LINK-UNIT4" class="block w-full text-center bg-[#F3B755] hover:bg-amber-600 text-white font-display font-medium text-xs py-2 rounded-xl shadow-sm transition active:scale-95">
+              BUY NOW
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Carousel Pagination Dots -->
+      <div class="flex justify-center gap-1.5 mt-1">
+        <span class="w-2 h-2 rounded-full bg-brand-pink"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+      </div>
+    </section>
+
+    <!-- SECTION 2: SAINS TINGKATAN 2 CAROUSEL -->
+    <section id="form2" class="pt-2 pb-6">
+      <div class="px-6 flex items-center justify-between">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-purple-100/80 px-3.5 py-1 rounded-full border border-purple-200/50">
+            <h2 class="font-display font-bold text-lg text-brand-text">Sains Tingkatan 2</h2>
+            <span class="text-xs">⚡</span>
+          </div>
+          <p class="text-xs text-brand-muted mt-1">Build stronger concepts, one chapter at a time.</p>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <div class="flex items-center gap-1.5">
+          <button onclick="scrollCarousel('carouselForm2', -220)" class="w-8 h-8 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90">
+            ←
+          </button>
+          <button onclick="scrollCarousel('carouselForm2', 220)" class="w-8 h-8 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90">
+            →
+          </button>
+        </div>
+      </div>
+
+      <!-- CAROUSEL TRACK -->
+      <div id="carouselForm2" class="flex gap-4 overflow-x-auto no-scrollbar px-6 pt-4 pb-4 snap-x snap-mandatory">
+        
+        <!-- CARD 1: PINK / MICROSCOPE -->
+        <div class="min-w-[210px] w-[210px] bg-[#FDF0F1] rounded-[28px] p-4 flex flex-col justify-between border border-rose-100/80 shadow-soft snap-start transform transition hover:-translate-y-1">
+          <div>
+            <span class="inline-block bg-rose-200/60 text-rose-800 text-[10px] font-display font-semibold px-2.5 py-0.5 rounded-full mb-2">
+              Bab 1
+            </span>
+            <div class="h-28 flex items-center justify-center my-1">
+              <!-- 3D Clay Microscope Illustration -->
+              <svg viewBox="0 0 120 120" class="w-24 h-24">
+                <ellipse cx="60" cy="100" rx="30" ry="6" fill="#E2D0C3" />
+                <!-- Base & Arm -->
+                <rect x="45" y="90" width="30" height="8" rx="3" fill="#90A4AE" />
+                <path d="M 68 90 L 68 55 C 68 45 52 45 52 55" fill="none" stroke="#78909C" stroke-width="7" stroke-linecap="round" />
+                <!-- Eyepiece & Lens -->
+                <rect x="46" y="40" width="12" height="30" rx="3" fill="#64B5F6" transform="rotate(15 46 40)" />
+                <circle cx="60" cy="75" r="8" fill="#E0E0E0" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-base text-brand-text">Pengenalan kepada Sains</h3>
+            <p class="text-[11px] text-brand-muted leading-tight mt-1">Asas sains dan kaedah saintifik.</p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-rose-100/60">
+            <div class="font-display font-bold text-sm text-brand-text mb-2">RM3.90</div>
+            <a href="#TOYYIBPAY-LINK-BAB1" class="block w-full text-center bg-[#E8A3A8] hover:bg-rose-400 text-white font-display font-medium text-xs py-2 rounded-xl shadow-sm transition active:scale-95">
+              BUY NOW
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 2: LAVENDER / JIRIM -->
+        <div class="min-w-[210px] w-[210px] bg-[#F3F0FD] rounded-[28px] p-4 flex flex-col justify-between border border-purple-100/80 shadow-soft snap-start transform transition hover:-translate-y-1">
+          <div>
+            <span class="inline-block bg-purple-200/60 text-purple-800 text-[10px] font-display font-semibold px-2.5 py-0.5 rounded-full mb-2">
+              Bab 2
+            </span>
+            <div class="h-28 flex items-center justify-center my-1">
+              <!-- 3D Flask Illustration -->
+              <svg viewBox="0 0 120 120" class="w-24 h-24">
+                <ellipse cx="60" cy="100" rx="25" ry="6" fill="#D7D3E8" />
+                <path d="M 52 45 L 68 45 L 82 85 A 8 8 0 0 1 74 95 L 46 95 A 8 8 0 0 1 38 85 Z" fill="#E1BEE7" opacity="0.8" stroke="#BA68C8" stroke-width="3" />
+                <path d="M 42 80 L 78 80 L 74 92 L 46 92 Z" fill="#AB47BC" />
+                <circle cx="55" cy="70" r="3" fill="#FFF" />
+                <circle cx="65" cy="65" r="2" fill="#FFF" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-base text-brand-text">Jirim</h3>
+            <p class="text-[11px] text-brand-muted leading-tight mt-1">Ciri-ciri jirim dan perubahannya.</p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-purple-100/60">
+            <div class="font-display font-bold text-sm text-brand-text mb-2">RM3.90</div>
+            <a href="#TOYYIBPAY-LINK-BAB2" class="block w-full text-center bg-[#B4A0E5] hover:bg-purple-500 text-white font-display font-medium text-xs py-2 rounded-xl shadow-sm transition active:scale-95">
+              BUY NOW
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 3: MINT / TENAGA -->
+        <div class="min-w-[210px] w-[210px] bg-[#EBF6F2] rounded-[28px] p-4 flex flex-col justify-between border border-emerald-100/80 shadow-soft snap-start transform transition hover:-translate-y-1">
+          <div>
+            <span class="inline-block bg-emerald-200/60 text-emerald-800 text-[10px] font-display font-semibold px-2.5 py-0.5 rounded-full mb-2">
+              Bab 3
+            </span>
+            <div class="h-28 flex items-center justify-center my-1">
+              <!-- 3D Atom Illustration -->
+              <svg viewBox="0 0 120 120" class="w-24 h-24">
+                <circle cx="60" cy="60" r="10" fill="#FF7043" />
+                <ellipse cx="60" cy="60" rx="35" ry="12" fill="none" stroke="#4FC3F7" stroke-width="3" transform="rotate(30 60 60)" />
+                <ellipse cx="60" cy="60" rx="35" ry="12" fill="none" stroke="#81C784" stroke-width="3" transform="rotate(-30 60 60)" />
+              </svg>
+            </div>
+            <h3 class="font-display font-bold text-base text-brand-text">Tenaga</h3>
+            <p class="text-[11px] text-brand-muted leading-tight mt-1">Jenis tenaga dan sumber tenaga.</p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-emerald-100/60">
+            <div class="font-display font-bold text-sm text-brand-text mb-2">RM3.90</div>
+            <a href="#TOYYIBPAY-LINK-BAB3" class="block w-full text-center bg-[#72C8A9] hover:bg-emerald-600 text-white font-display font-medium text-xs py-2 rounded-xl shadow-sm transition active:scale-95">
+              BUY NOW
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Carousel Pagination Dots -->
+      <div class="flex justify-center gap-1.5 mt-1">
+        <span class="w-2 h-2 rounded-full bg-brand-pink"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+      </div>
+    </section>
+
+    <!-- ABOUT ME BANNER SECTION -->
+    <section id="about" class="px-6 py-4">
+      <div class="bg-gradient-to-br from-[#F5EEF8] to-[#EFEBF9] rounded-[32px] p-5 border border-purple-100/60 shadow-soft relative overflow-hidden flex items-center gap-4">
+        
+        <!-- Teacher Avatar SVG -->
+        <div class="w-24 h-24 flex-shrink-0 relative">
+          <svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-md">
+            <!-- Hijab Pink -->
+            <path d="M 60 20 C 35 20 25 45 25 75 C 25 95 35 105 60 105 C 85 105 95 95 95 75 C 95 45 85 20 60 20 Z" fill="#F48FB1" />
+            <!-- Face -->
+            <ellipse cx="60" cy="58" rx="20" ry="22" fill="#FFCC80" />
+            <!-- Eyes & Smile -->
+            <circle cx="52" cy="56" r="2.5" fill="#333" />
+            <circle cx="68" cy="56" r="2.5" fill="#333" />
+            <path d="M 56 66 Q 60 70 64 66" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" />
+            <!-- Cheeks -->
+            <circle cx="48" cy="62" r="3" fill="#FF8A80" opacity="0.6" />
+            <circle cx="72" cy="62" r="3" fill="#FF8A80" opacity="0.6" />
+            <!-- Inner Hijab Wrap -->
+            <path d="M 40 48 C 40 38 80 38 80 48 C 80 42 40 42 40 48 Z" fill="#F8BBD0" />
+          </svg>
+        </div>
+
+        <div class="flex-1">
+          <div class="flex items-center gap-1">
+            <h3 class="font-display font-bold text-base text-brand-text">About Me</h3>
+            <span class="text-xs">💕</span>
+          </div>
+          <h4 class="font-display font-bold text-lg text-brand-text -mt-1">Hi, I’m Cikgu Myra.</h4>
+          <p class="text-[11px] text-brand-muted leading-relaxed mt-1">
+            Simple learning materials created to make studying easier, clearer and more enjoyable.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GET IN TOUCH SECTION -->
+    <section id="contact" class="px-6 py-4">
+      <div class="bg-[#F6F8F3] rounded-[32px] p-5 border border-emerald-100/50 relative">
+        <div class="flex items-center gap-1.5 mb-1">
+          <h3 class="font-display font-bold text-lg text-brand-text">Get in Touch</h3>
+          <span class="text-xs">🪄</span>
+        </div>
+        <p class="text-xs text-brand-muted mb-4">Have question?</p>
+
+        <div class="space-y-2.5">
+          <!-- Email Button Row -->
+          <a href="mailto:cikgumyra@gmail.com" class="flex items-center justify-between bg-white px-4 py-3 rounded-2xl shadow-sm border border-gray-100/80 hover:bg-gray-50 transition">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-rose-100 flex items-center justify-center text-rose-500">
+                ✉️
+              </div>
+              <div>
+                <div class="text-[10px] text-brand-muted font-medium">Email</div>
+                <div class="text-xs font-semibold text-brand-text">cikgumyra@gmail.com</div>
+              </div>
+            </div>
+            <span class="text-gray-300 text-xs">›</span>
+          </a>
+
+          <!-- TikTok Button Row -->
+          <a href="https://tiktok.com/@bycikgumyra" target="_blank" class="flex items-center justify-between bg-white px-4 py-3 rounded-2xl shadow-sm border border-gray-100/80 hover:bg-gray-50 transition">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-teal-100 flex items-center justify-center text-teal-600">
+                🎵
+              </div>
+              <div>
+                <div class="text-[10px] text-brand-muted font-medium">TikTok</div>
+                <div class="text-xs font-semibold text-brand-text">@bycikgumyra</div>
+              </div>
+            </div>
+            <span class="text-gray-300 text-xs">›</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer class="mt-4 pt-6 pb-8 text-center relative overflow-hidden">
+      <!-- Decorative Wavy Background Shape -->
+      <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-orange-100/30 to-transparent -z-10"></div>
+
+      <div class="flex items-center justify-center gap-1 font-display font-bold text-lg text-brand-text">
+        <span>by Cikgu Myra</span>
+        <span class="text-brand-pink text-sm">💕</span>
+      </div>
+      <p class="text-xs font-medium text-brand-text/80 mt-1">Simplified Learning Materials</p>
+      <p class="text-[10px] text-brand-muted mt-0.5">Notes • Slides • Exercises</p>
+    </footer>
+
+  </div>
+
+  <!-- JAVASCRIPT FOR CAROUSEL SCROLL & MENU -->
+  <script>
+    function scrollCarousel(id, offset) {
+      const carousel = document.getElementById(id);
+      carousel.scrollBy({ left: offset, behavior: 'smooth' });
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById('navMenu');
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+    }
+  </script>
+</body>
+</html>
