@@ -1,606 +1,1472 @@
 <!DOCTYPE html>
-<html lang="ms">
+
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>by Cikgu Myra | Simplified Learning Materials</title>
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>by Cikgu Myra 💕 — Learning Made Simple</title>
+
+```
+<!-- Google Fonts: Fredoka & Quicksand for playful handwriting header feel + Plus Jakarta Sans for body -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
     tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['Fredoka', 'sans-serif'],
-            body: ['Plus Jakarta Sans', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              pink: '#E8A3A8',
-              'pink-light': '#FDF0F1',
-              peach: '#FFEFE5',
-              'peach-btn': '#E8A3A8',
-              lavender: '#F1EFFB',
-              mint: '#EBF6F2',
-              yellow: '#FFF8E7',
-              cream: '#FAFAFA',
-              text: '#333745',
-              muted: '#7E859B',
+        theme: {
+            extend: {
+                colors: {
+                    brand: {
+                        bg: '#FDFBF7',
+                        pink: '#EAA3A7',
+                        pinkHover: '#E08E93',
+                        lavender: '#E5E1FA',
+                        lavenderBtn: '#B2A5EE',
+                        mint: '#E0F4EB',
+                        mintBtn: '#92DBBA',
+                        peach: '#FDECE4',
+                        yellow: '#FAF2D7',
+                        yellowBtn: '#F5D783',
+                        cardBg: '#FFFFFF',
+                        textDark: '#3A3845',
+                        textMuted: '#7D7A8C'
+                    }
+                },
+                fontFamily: {
+                    sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    display: ['Fredoka', 'Quicksand', 'sans-serif'],
+                    hand: ['Quicksand', 'sans-serif']
+                }
             }
-          },
-          boxShadow: {
-            'clay-card': '0 10px 25px -5px rgba(220, 210, 210, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.8)',
-            'clay-btn': '0 8px 15px -3px rgba(232, 163, 168, 0.4), inset 0 2px 3px rgba(255, 255, 255, 0.6)',
-            'soft': '0 10px 30px rgba(0, 0, 0, 0.04)',
-          }
         }
-      }
     }
-  </script>
+</script>
 
-  <style>
-    /* Custom Scrollbar for Horizontal Carousels */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+<style>
+    body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #FAF6EF;
+        color: #3A3845;
+        -webkit-tap-highlight-color: transparent;
+        overflow-x: hidden;
     }
 
-    /* Subtle Floating Animation for Hero Illustration */
-    @keyframes floatSlow {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-8px) rotate(1deg); }
+    .font-brand {
+        font-family: 'Fredoka', 'Quicksand', cursive;
     }
+
+    /* Clay Card Styling */
+    .clay-card {
+        border-radius: 28px;
+        box-shadow: 
+            0 14px 28px rgba(220, 210, 195, 0.45),
+            0 4px 8px rgba(0, 0, 0, 0.02),
+            inset 2px 2px 4px rgba(255, 255, 255, 0.9),
+            inset -2px -2px 4px rgba(0, 0, 0, 0.03);
+        transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .clay-pill-badge {
+        background: #F2EADA;
+        border-radius: 999px;
+        padding: 6px 18px;
+        box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    /* Clay Buttons */
+    .clay-btn {
+        border-radius: 999px;
+        font-family: 'Fredoka', sans-serif;
+        font-weight: 600;
+        transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: 
+            0 6px 14px rgba(0, 0, 0, 0.08),
+            inset 0 2px 2px rgba(255, 255, 255, 0.5),
+            inset 0 -2px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .clay-btn:active {
+        transform: translateY(2px) scale(0.98);
+    }
+
+    .clay-btn-hero {
+        background-color: #E89E9E;
+        color: white;
+    }
+
+    .clay-btn-hero:hover {
+        background-color: #DF8D8D;
+        transform: translateY(-2px);
+    }
+
+    .clay-btn-pink { background-color: #EDB2B5; color: white; }
+    .clay-btn-purple { background-color: #BDB2EE; color: white; }
+    .clay-btn-mint { background-color: #92DCBA; color: white; }
+    .clay-btn-yellow { background-color: #F3CE72; color: white; }
+
+    /* Carousel scroll behavior */
+    .carousel-container {
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .carousel-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Sparkle float keyframes */
+    @keyframes float-soft {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-6px) rotate(2deg); }
+    }
+
     .animate-float {
-      animation: floatSlow 5s ease-in-out infinite;
+        animation: float-soft 4s ease-in-out infinite;
     }
 
-    /* Hand-drawn accent mark styling */
-    .accent-sparkle {
-      position: relative;
+    /* Watermark Pattern Styling */
+    .watermark-overlay {
+        pointer-events: none;
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.35;
     }
-    .accent-sparkle::after {
-      content: '🪄';
-      font-size: 14px;
-      position: absolute;
-      top: -12px;
-      right: -18px;
+
+    .watermark-pattern {
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        transform: rotate(-25deg);
+        background-image: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 30px,
+            rgba(255, 255, 255, 0.8) 30px,
+            rgba(255, 255, 255, 0.8) 31px
+        );
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
     }
-  </style>
+
+    .watermark-text {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        color: #FFFFFF;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        white-space: nowrap;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+</style>
+```
+
 </head>
 
-<body class="bg-[#FBF9F6] text-brand-text font-body antialiased min-h-screen pb-12 selection:bg-brand-pink/20 selection:text-brand-pink">
+<body class="antialiased min-h-screen flex flex-col items-center justify-start pb-10">
 
-  <!-- MAIN CONTAINER (Mobile-First Frame) -->
-  <div class="max-w-md mx-auto min-h-screen bg-[#FAF8F5] relative overflow-hidden shadow-2xl md:my-6 md:rounded-[40px] md:border-[8px] md:border-white">
+```
+<!-- MAIN CONTAINER (Mobile Frame Container) -->
+<div class="w-full max-w-md mx-auto px-4 pt-4 sm:px-6">
 
-    <!-- TOP BAR / STATUS SPACER -->
-    <div class="px-6 pt-5 pb-2 flex justify-between items-center text-xs font-semibold text-gray-400">
-      <span>9:41</span>
-      <div class="flex items-center gap-1.5">
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.22 19.57 10.57 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4z"/></svg>
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17 4h-3V2h-4v2H7c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z"/></svg>
-      </div>
-    </div>
+    <!-- HEADER TOP BAR -->
+    <header class="flex items-center justify-between py-3 mb-2">
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="px-6 py-3 flex justify-between items-center relative z-20">
-      <a href="#" class="flex items-center gap-1.5 group">
-        <span class="font-display text-2xl font-bold tracking-tight text-brand-text">
-          by <span class="text-brand-text">Cikgu Myra</span>
-        </span>
-        <span class="text-brand-pink text-sm animate-pulse">💕</span>
-      </a>
+        <!-- Brand Logo -->
+        <a href="#home" class="flex items-center gap-1.5 group">
+            <span class="font-brand text-2xl font-bold tracking-tight text-[#3A3845]">by Cikgu Myra</span>
 
-      <!-- Hamburger Menu Button -->
-      <button onclick="toggleMenu()" class="w-10 h-10 rounded-2xl bg-white/80 shadow-sm border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-white transition active:scale-95">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
+            <!-- Pink Heart Icon -->
+            <svg class="w-5 h-5 text-[#EAA3A7] fill-current group-hover:scale-125 transition-transform" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        </a>
+
+        <!-- Circle Hamburger Menu Icon -->
+        <button id="menu-btn" aria-label="Open Menu" class="w-10 h-10 rounded-full bg-[#F4EDE2] flex items-center justify-center text-[#5C596B] shadow-sm hover:bg-[#EAE0D0] transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" viewBox="0 0 24 24">
+                <path d="M4 7h16M4 12h16M4 17h16"/>
+            </svg>
+        </button>
     </header>
 
-    <!-- MOBILE MENU DROPDOWN -->
-    <div id="navMenu" class="hidden absolute top-20 right-6 left-6 bg-white/95 backdrop-blur-md rounded-3xl p-5 shadow-2xl border border-white z-30 flex-col gap-3 text-center font-display font-medium text-lg text-gray-700">
-      <a href="#hero" onclick="toggleMenu()" class="py-2 hover:text-brand-pink transition">Home</a>
-      <a href="#year2" onclick="toggleMenu()" class="py-2 hover:text-brand-pink transition">Science Year 5</a>
-      <a href="#form2" onclick="toggleMenu()" class="py-2 hover:text-brand-pink transition">Sains Tingkatan 2</a>
-      <a href="#about" onclick="toggleMenu()" class="py-2 hover:text-brand-pink transition">About Me</a>
-      <a href="#contact" onclick="toggleMenu()" class="py-2 hover:text-brand-pink transition">Contact</a>
-    </div>
+    <!-- Mobile Navigation Menu (Hidden by default) -->
+    <nav id="mobile-menu" class="hidden clay-card bg-[#FAF6EF] border-2 border-[#F4EDE2] p-5 mb-4 absolute top-[68px] left-4 right-4 z-50">
+        <ul class="flex flex-col gap-4 text-center">
+            <li><a href="#home" class="mobile-link block font-brand font-bold text-lg text-[#3A3845] hover:text-[#EAA3A7] transition-colors">Home</a></li>
+            <li><a href="#science-year-5" class="mobile-link block font-brand font-bold text-lg text-[#3A3845] hover:text-[#EAA3A7] transition-colors">Products</a></li>
+            <li><a href="#about" class="mobile-link block font-brand font-bold text-lg text-[#3A3845] hover:text-[#EAA3A7] transition-colors">About Me</a></li>
+            <li><a href="#faq" class="mobile-link block font-brand font-bold text-lg text-[#3A3845] hover:text-[#EAA3A7] transition-colors">FAQ</a></li>
+        </ul>
+    </nav>
 
     <!-- HERO SECTION -->
-    <section id="hero" class="px-6 pt-2 pb-6 relative">
-      <!-- Background Pastel Blob -->
-      <div class="absolute top-0 right-0 w-64 h-64 bg-amber-100/40 rounded-full blur-3xl -z-10"></div>
-      
-      <div class="flex flex-col gap-1">
-        <div class="flex items-center gap-1.5">
-          <h1 class="font-display text-[34px] leading-[1.1] font-bold text-brand-text tracking-tight">
-            Learning<br>Made Simple<span class="text-brand-pink">.</span>
-          </h1>
-          <span class="text-xl text-amber-400 font-bold ml-1">✏️</span>
+    <section id="home" class="relative pt-2 pb-6">
+        <div class="grid grid-cols-1 gap-4 items-center">
+
+            <!-- Hero Text -->
+            <div>
+                <div class="relative inline-block">
+                    <h1 class="font-brand text-[34px] leading-[1.15] font-bold text-[#3A3845]">
+                        Learning<br>Made Simple<span class="text-[#3A3845]">.</span>
+                    </h1>
+
+                    <!-- Hand-drawn 3 spark lines above "Simple" -->
+                    <svg class="absolute -top-1 right-2 w-7 h-7 text-[#E8A382]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                        <line x1="12" y1="3" x2="12" y2="7" />
+                        <line x1="18" y1="6" x2="15" y2="9" />
+                        <line x1="6" y1="6" x2="9" y2="9" />
+                    </svg>
+                </div>
+
+                <p class="text-xs sm:text-sm font-medium text-[#7D7A8C] mt-2 mb-4 leading-relaxed max-w-[260px]">
+                    Simplified learning materials for students, tutors & parents.
+                </p>
+
+                <!-- CTA Pill Button -->
+                <a href="#science-year-5" class="clay-btn clay-btn-hero inline-flex items-center gap-2 px-6 py-2.5 text-sm">
+                    <span>Explore Products</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- 3D Clay Educational Hero Illustration SVG -->
+            <div class="relative w-full h-[220px] flex items-center justify-center my-1">
+                <svg class="w-full h-full max-w-[340px] drop-shadow-xl animate-float" viewBox="0 0 320 220" fill="none">
+                    <defs>
+
+                        <!-- 3D Clay Gradients -->
+                        <linearGradient id="clayMint" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#E0F4EB" />
+                            <stop offset="100%" stop-color="#92DBBA" />
+                        </linearGradient>
+
+                        <linearGradient id="clayLavender" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#F0ECFC" />
+                            <stop offset="100%" stop-color="#BDB2EE" />
+                        </linearGradient>
+
+                        <linearGradient id="clayPeach" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#FDF0E6" />
+                            <stop offset="100%" stop-color="#E8A382" />
+                        </linearGradient>
+
+                        <linearGradient id="clayPink" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#FDECEE" />
+                            <stop offset="100%" stop-color="#EAA3A7" />
+                        </linearGradient>
+
+                        <linearGradient id="clayWhite" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#FFFFFF" />
+                            <stop offset="100%" stop-color="#F4EDE2" />
+                        </linearGradient>
+
+                        <linearGradient id="clayGrey" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#FDFBF7" />
+                            <stop offset="100%" stop-color="#EAE0D0" />
+                        </linearGradient>
+
+                        <linearGradient id="clayYellow" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#FFF8E1" />
+                            <stop offset="100%" stop-color="#F5D783" />
+                        </linearGradient>
+
+                        <!-- Soft 3D Drop Shadows -->
+                        <filter id="clayShadow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="2" dy="8" stdDeviation="5" flood-color="#DCD2C3" flood-opacity="0.8"/>
+                        </filter>
+
+                        <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+                            <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#F5D783" flood-opacity="0.9"/>
+                        </filter>
+                    </defs>
+
+                    <!-- Ground Shadow -->
+                    <ellipse cx="160" cy="205" rx="120" ry="12" fill="#EAE2D5" opacity="0.6"/>
+
+                    <!-- LEFT SIDE: The "Before" -->
+                    <g transform="translate(10, 110) rotate(-25)" filter="url(#clayShadow)">
+                        <rect x="0" y="0" width="45" height="60" rx="4" fill="url(#clayGrey)"/>
+                        <line x1="8" y1="15" x2="35" y2="15" stroke="#D1C9BC" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="8" y1="25" x2="25" y2="25" stroke="#D1C9BC" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="8" y1="35" x2="38" y2="35" stroke="#D1C9BC" stroke-width="2.5" stroke-linecap="round"/>
+                    </g>
+
+                    <g transform="translate(45, 60) rotate(15)" filter="url(#clayShadow)">
+                        <rect x="0" y="0" width="45" height="60" rx="4" fill="url(#clayGrey)"/>
+                        <line x1="8" y1="15" x2="30" y2="15" stroke="#D1C9BC" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M 10 30 Q 20 20 35 40" stroke="#D1C9BC" stroke-width="2" fill="none"/>
+                        <text x="22" y="45" font-family="Fredoka" font-size="20" font-weight="bold" fill="#EAA3A7" opacity="0.6" text-anchor="middle">?</text>
+                    </g>
+
+                    <!-- Transition Motion Lines -->
+                    <path d="M 80 100 Q 110 80 135 110" stroke="#B2A5EE" stroke-width="3" stroke-dasharray="6,6" stroke-linecap="round" fill="none" opacity="0.6"/>
+                    <polygon points="133,105 142,115 128,115" fill="#B2A5EE" opacity="0.6" transform="rotate(-30 135 110)"/>
+
+                    <!-- RIGHT SIDE: The "After" -->
+                    <g transform="translate(230, 75) rotate(8)" filter="url(#clayShadow)">
+                        <rect x="0" y="0" width="60" height="85" rx="6" fill="url(#clayLavender)"/>
+                        <rect x="20" y="-6" width="20" height="12" rx="4" fill="#B2A5EE"/>
+                        <rect x="6" y="12" width="48" height="65" rx="3" fill="url(#clayWhite)"/>
+
+                        <path d="M 12 25 L 16 29 L 22 22" stroke="#92DBBA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <line x1="28" y1="25" x2="48" y2="25" stroke="#EAE0D0" stroke-width="3" stroke-linecap="round"/>
+
+                        <path d="M 12 40 L 16 44 L 22 37" stroke="#92DBBA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <line x1="28" y1="40" x2="42" y2="40" stroke="#EAE0D0" stroke-width="3" stroke-linecap="round"/>
+
+                        <path d="M 12 55 L 16 59 L 22 52" stroke="#92DBBA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <line x1="28" y1="55" x2="46" y2="55" stroke="#EAE0D0" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- Main Organized Folder / Notes Stack -->
+                    <g transform="translate(100, 75) rotate(-3)" filter="url(#clayShadow)">
+                        <rect x="0" y="0" width="130" height="95" rx="10" fill="url(#clayMint)"/>
+                        <rect x="15" y="-6" width="115" height="95" rx="6" fill="#FFFFFF"/>
+                        <rect x="15" y="-3" width="115" height="95" rx="6" fill="url(#clayWhite)"/>
+
+                        <rect x="0" y="-6" width="22" height="105" rx="8" fill="url(#clayPink)"/>
+                        <line x1="6" y1="10" x2="6" y2="90" stroke="#FFFFFF" stroke-width="2" opacity="0.4" stroke-linecap="round"/>
+
+                        <rect x="35" y="15" width="55" height="12" rx="6" fill="url(#clayPeach)"/>
+
+                        <circle cx="38" cy="40" r="3" fill="#B2A5EE"/>
+                        <line x1="48" y1="40" x2="110" y2="40" stroke="#EAE0D0" stroke-width="4" stroke-linecap="round"/>
+
+                        <circle cx="38" cy="55" r="3" fill="#B2A5EE"/>
+                        <line x1="48" y1="55" x2="95" y2="55" stroke="#EAE0D0" stroke-width="4" stroke-linecap="round"/>
+
+                        <circle cx="105" cy="18" r="8" fill="url(#clayYellow)"/>
+
+                        <circle cx="100" cy="75" r="15" fill="url(#clayMint)"/>
+                        <circle cx="100" cy="75" r="18" stroke="#FFFFFF" stroke-width="3" fill="none" opacity="0.5"/>
+                        <path d="M 93 75 L 98 80 L 107 70" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+                        <g transform="translate(30, 60) rotate(-10)" filter="url(#clayShadow)">
+                            <rect x="0" y="0" width="35" height="35" rx="4" fill="url(#clayYellow)"/>
+                            <line x1="6" y1="12" x2="28" y2="12" stroke="#EAA3A7" stroke-width="3" stroke-linecap="round"/>
+                            <line x1="6" y1="22" x2="20" y2="22" stroke="#EAA3A7" stroke-width="3" stroke-linecap="round"/>
+                            <polygon points="25,35 35,35 35,25" fill="#F3CE72"/>
+                        </g>
+                    </g>
+
+                    <!-- Cute Chunky Pencil -->
+                    <g transform="translate(60, 160) rotate(-35)" filter="url(#clayShadow)">
+                        <rect x="25" y="0" width="60" height="22" rx="6" fill="url(#clayYellow)"/>
+                        <path d="M 25 0 C 12 0 12 22 25 22 Z" fill="url(#clayPink)"/>
+                        <rect x="22" y="0" width="8" height="22" fill="#D1C9BC"/>
+                        <polygon points="82,0 105,11 82,22" fill="url(#clayPeach)"/>
+                        <polygon points="96,7 105,11 96,15" fill="#7D7A8C"/>
+                        <line x1="30" y1="5" x2="75" y2="5" stroke="#FFFFFF" stroke-width="3" opacity="0.6" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- Glowing Lightbulb -->
+                    <g transform="translate(85, 10)" filter="url(#softGlow)">
+                        <circle cx="22" cy="22" r="20" fill="url(#clayYellow)"/>
+                        <rect x="14" y="38" width="16" height="10" rx="3" fill="#B2A5EE"/>
+                        <rect x="17" y="48" width="10" height="5" rx="2.5" fill="#7D7A8C"/>
+
+                        <circle cx="16" cy="22" r="2" fill="#3A3845"/>
+                        <circle cx="28" cy="22" r="2" fill="#3A3845"/>
+                        <path d="M 20 27 Q 22 30 24 27" stroke="#3A3845" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+                        <ellipse cx="12" cy="25" rx="3" ry="2" fill="#EAA3A7" opacity="0.8"/>
+                        <ellipse cx="32" cy="25" rx="3" ry="2" fill="#EAA3A7" opacity="0.8"/>
+
+                        <line x1="22" y1="-4" x2="22" y2="-12" stroke="url(#clayYellow)" stroke-width="4" stroke-linecap="round"/>
+                        <line x1="48" y1="22" x2="56" y2="22" stroke="url(#clayYellow)" stroke-width="4" stroke-linecap="round"/>
+                        <line x1="-4" y1="22" x2="-12" y2="22" stroke="url(#clayYellow)" stroke-width="4" stroke-linecap="round"/>
+                        <line x1="40" y1="4" x2="46" y2="-2" stroke="url(#clayYellow)" stroke-width="4" stroke-linecap="round"/>
+                        <line x1="4" y1="4" x2="-2" y2="-2" stroke="url(#clayYellow)" stroke-width="4" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- Magical Sparkles -->
+                    <path d="M 260 40 Q 265 40 265 30 Q 265 40 270 40 Q 265 40 265 50 Q 265 40 260 40" fill="#EAA3A7" filter="url(#softGlow)"/>
+                    <path d="M 280 140 Q 288 140 288 132 Q 288 140 296 140 Q 288 140 288 148 Q 288 140 280 140" fill="#92DBBA"/>
+                    <path d="M 20 160 Q 26 160 26 154 Q 26 160 32 160 Q 26 160 26 166 Q 26 160 20 160" fill="#F3CE72"/>
+                </svg>
+            </div>
         </div>
-        
-        <p class="text-brand-muted text-sm leading-relaxed max-w-[240px] mt-2 font-normal">
-          Simplified learning materials for students, tutors & parents.
+    </section>
+
+    <!-- SECTION 1: SCIENCE YEAR 5 -->
+    <section id="science-year-5" class="py-5">
+
+        <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-1.5">
+                <span class="clay-pill-badge font-brand text-base font-bold text-[#3A3845]">
+                    Science Year 5
+                </span>
+
+                <svg class="w-5 h-5 text-[#E8A382]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="12" y1="3" x2="12" y2="7"/>
+                    <line x1="18" y1="6" x2="15" y2="9"/>
+                    <line x1="6" y1="6" x2="9" y2="9"/>
+                </svg>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <button onclick="scrollCarousel('carousel-y5', -210)" class="w-8 h-8 rounded-full bg-[#F2EADA] flex items-center justify-center text-[#5C596B] hover:bg-[#EAE0D0] transition-colors" aria-label="Previous">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+
+                <button onclick="scrollCarousel('carousel-y5', 210)" class="w-8 h-8 rounded-full bg-[#F2EADA] flex items-center justify-center text-[#5C596B] hover:bg-[#EAE0D0] transition-colors" aria-label="Next">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <p class="text-xs font-medium text-[#7D7A8C] mb-4">
+            Simple notes made easier to understand.
         </p>
 
-        <div class="mt-4">
-          <a href="#year2" class="inline-flex items-center gap-2 bg-brand-pink hover:bg-rose-400 text-white font-display font-medium text-sm px-6 py-3 rounded-full shadow-clay-btn transition transform active:scale-95">
-            Explore Products
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        <div id="carousel-y5" class="carousel-container flex gap-3.5 overflow-x-auto py-2 -mx-4 px-4 snap-x snap-mandatory">
+        </div>
+
+        <div id="dots-y5" class="flex items-center justify-center gap-1.5 mt-3"></div>
+    </section>
+
+    <!-- SECTION 2: SCIENCE YEAR 6 -->
+    <section id="science-year-6" class="py-5">
+
+        <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-1.5">
+                <span class="clay-pill-badge font-brand text-base font-bold text-[#3A3845]">
+                    Science Year 6
+                </span>
+
+                <svg class="w-5 h-5 text-[#E8A382]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="12" y1="3" x2="12" y2="7"/>
+                    <line x1="18" y1="6" x2="15" y2="9"/>
+                    <line x1="6" y1="6" x2="9" y2="9"/>
+                </svg>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <button onclick="scrollCarousel('carousel-y6', -210)" class="w-8 h-8 rounded-full bg-[#F2EADA] flex items-center justify-center text-[#5C596B] hover:bg-[#EAE0D0] transition-colors" aria-label="Previous">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+
+                <button onclick="scrollCarousel('carousel-y6', 210)" class="w-8 h-8 rounded-full bg-[#F2EADA] flex items-center justify-center text-[#5C596B] hover:bg-[#EAE0D0] transition-colors" aria-label="Next">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <p class="text-xs font-medium text-[#7D7A8C] mb-4">
+            Mastering advanced concepts for preparation.
+        </p>
+
+        <div id="carousel-y6" class="carousel-container flex gap-3.5 overflow-x-auto py-2 -mx-4 px-4 snap-x snap-mandatory">
+        </div>
+
+        <div id="dots-y6" class="flex items-center justify-center gap-1.5 mt-3"></div>
+    </section>
+
+    <!-- SECTION 3: COMBO PACKS -->
+    <section id="combo-packs" class="py-5">
+
+        <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-1.5">
+                <span class="clay-pill-badge font-brand text-base font-bold text-[#3A3845]">
+                    Combo Packs
+                </span>
+
+                <svg class="w-5 h-5 text-[#E8A382]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="12" y1="3" x2="12" y2="7"/>
+                    <line x1="18" y1="6" x2="15" y2="9"/>
+                    <line x1="6" y1="6" x2="9" y2="9"/>
+                </svg>
+            </div>
+        </div>
+
+        <p class="text-xs font-medium text-[#7D7A8C] mb-4">
+            Learn More. Pay Less ✨
+        </p>
+
+        <div class="flex flex-col gap-4">
+
+            <!-- COMBO 1: Year 5 Saver Pack -->
+            <div class="clay-card p-4 bg-[#FDECEE]">
+                <div class="flex gap-4 mb-3 items-center">
+
+                    <div class="w-[88px] h-[88px] flex-shrink-0 bg-white/60 rounded-[16px] p-2 flex items-center justify-center shadow-sm">
+                        <svg class="w-20 h-20 drop-shadow-md" viewBox="0 0 100 100" fill="none">
+
+                            <circle cx="50" cy="50" r="35" fill="#FFF2CC" opacity="0.9"/>
+
+                            <!-- FIXED: valid SVG path -->
+                            <path d="M 50 10 L 52 20 L 62 18 L 56 26 L 66 32 L 56 36 L 50 46 L 44 36 L 34 32 L 44 26 L 38 18 L 48 20 Z"
+                                  fill="none"
+                                  stroke="#FFD966"
+                                  stroke-width="2"
+                                  opacity="0.5"/>
+
+                            <rect x="15" y="55" width="70" height="20" rx="4" fill="#EAA3A7" transform="rotate(-5 50 65)"/>
+                            <rect x="15" y="52" width="70" height="18" rx="4" fill="#FDECEE" transform="rotate(-5 50 65)"/>
+                            <rect x="18" y="40" width="65" height="20" rx="4" fill="#92DBBA" transform="rotate(2 50 50)"/>
+                            <rect x="18" y="37" width="65" height="18" rx="4" fill="#E8F8F0" transform="rotate(2 50 50)"/>
+                            <rect x="22" y="25" width="60" height="25" rx="4" fill="#F5D783" transform="rotate(-3 50 35)"/>
+                            <rect x="22" y="22" width="60" height="23" rx="4" fill="#FAF4DF" transform="rotate(-3 50 35)"/>
+                            <line x1="28" y1="28" x2="28" y2="42" stroke="#F5D783" stroke-width="3" transform="rotate(-3 50 35)"/>
+
+                            <text x="55" y="35" font-family="Fredoka, sans-serif" font-size="12" font-weight="900" fill="#D4A72C" transform="rotate(-3 50 35)" text-anchor="middle">
+                                YEAR 5
+                            </text>
+
+                            <rect x="40" y="38" width="30" height="12" rx="6" fill="#EAA3A7" transform="rotate(-3 50 35)"/>
+
+                            <text x="55" y="47" font-family="Fredoka, sans-serif" font-size="8" font-weight="bold" fill="#FFFFFF" transform="rotate(-3 50 35)" text-anchor="middle">
+                                U2-10
+                            </text>
+                        </svg>
+                    </div>
+
+                    <div class="flex flex-col justify-center">
+                        <span class="inline-block px-2.5 py-1 rounded-full bg-[#F8D4D7] text-[10px] font-bold text-[#A8585D] mb-1.5 w-max">
+                            Unit 2–10 • Notes
+                        </span>
+
+                        <h3 class="font-brand text-[15px] font-bold text-[#3A3845] leading-snug mb-0.5">
+                            Science Year 5 Saver Pack
+                        </h3>
+
+                        <div class="flex items-baseline gap-2 mt-1">
+                            <span class="text-xs font-semibold text-[#7D7A8C] line-through">RM39.00</span>
+                            <span class="font-brand font-bold text-[19px] text-[#3A3845]">RM29.90</span>
+                            <span class="text-[10px] font-bold text-[#A8585D] ml-0.5">Save RM9.10</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#" class="clay-btn clay-btn-pink w-full py-2.5 text-[13px] text-center flex items-center justify-center gap-1.5">
+                    GET THE COMBO
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- COMBO 2: Year 6 Saver Pack -->
+            <div class="clay-card p-4 bg-[#E8F8F0]">
+                <div class="flex gap-4 mb-3 items-center">
+
+                    <div class="w-[88px] h-[88px] flex-shrink-0 bg-white/60 rounded-[16px] p-2 flex items-center justify-center shadow-sm">
+                        <svg class="w-20 h-20 drop-shadow-md" viewBox="0 0 100 100" fill="none">
+                            <circle cx="50" cy="50" r="35" fill="#EBE5FA" opacity="0.9"/>
+
+                            <rect x="15" y="55" width="70" height="20" rx="4" fill="#E8A382" transform="rotate(4 50 65)"/>
+                            <rect x="15" y="52" width="70" height="18" rx="4" fill="#FDF0E6" transform="rotate(4 50 65)"/>
+                            <rect x="18" y="40" width="65" height="20" rx="4" fill="#92DBBA" transform="rotate(-2 50 50)"/>
+                            <rect x="18" y="37" width="65" height="18" rx="4" fill="#E8F8F0" transform="rotate(-2 50 50)"/>
+                            <rect x="22" y="25" width="60" height="25" rx="4" fill="#B2A5EE" transform="rotate(3 50 35)"/>
+                            <rect x="22" y="22" width="60" height="23" rx="4" fill="#F0ECFC" transform="rotate(3 50 35)"/>
+                            <line x1="28" y1="28" x2="28" y2="42" stroke="#B2A5EE" stroke-width="3" transform="rotate(3 50 35)"/>
+
+                            <text x="55" y="35" font-family="Fredoka, sans-serif" font-size="12" font-weight="900" fill="#7D66D6" transform="rotate(3 50 35)" text-anchor="middle">
+                                YEAR 6
+                            </text>
+
+                            <rect x="40" y="38" width="30" height="12" rx="6" fill="#E8A382" transform="rotate(3 50 35)"/>
+
+                            <text x="55" y="47" font-family="Fredoka, sans-serif" font-size="8" font-weight="bold" fill="#FFFFFF" transform="rotate(3 50 35)" text-anchor="middle">
+                                U2-13
+                            </text>
+                        </svg>
+                    </div>
+
+                    <div class="flex flex-col justify-center">
+                        <span class="inline-block px-2.5 py-1 rounded-full bg-[#D2F0E2] text-[10px] font-bold text-[#4B8C6E] mb-1.5 w-max">
+                            Unit 2–13 • Notes
+                        </span>
+
+                        <h3 class="font-brand text-[15px] font-bold text-[#3A3845] leading-snug mb-0.5">
+                            Science Year 6 Saver Pack
+                        </h3>
+
+                        <div class="flex items-baseline gap-2 mt-1">
+                            <span class="text-xs font-semibold text-[#7D7A8C] line-through">RM50.70</span>
+                            <span class="font-brand font-bold text-[19px] text-[#3A3845]">RM39.90</span>
+                            <span class="text-[10px] font-bold text-[#4B8C6E] ml-0.5">Save RM10.80</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#" class="clay-btn clay-btn-mint w-full py-2.5 text-[13px] text-center flex items-center justify-center gap-1.5">
+                    GET THE COMBO
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT ME SECTION -->
+    <section id="about" class="py-10 flex flex-col items-center justify-center text-center">
+
+        <div class="flex items-center justify-center gap-2 mb-3">
+            <svg class="w-5 h-5 text-[#E8A382]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="12" y1="3" x2="12" y2="7"/>
+                <line x1="18" y1="6" x2="15" y2="9"/>
+                <line x1="6" y1="6" x2="9" y2="9"/>
             </svg>
-          </a>
+
+            <h2 class="font-brand text-[22px] font-bold text-[#3A3845]">
+                About Cikgu Myra
+            </h2>
+
+            <svg class="w-5 h-5 text-[#EAA3A7] fill-current" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
         </div>
-      </div>
 
-      <!-- 3D HERO CLAYMorphism VISUAL -->
-      <div class="mt-6 relative flex justify-center animate-float">
-        <div class="w-full max-w-[320px] aspect-square relative rounded-3xl p-4 flex items-center justify-center">
-          
-          <!-- Rendered 3D Clay Illustration Representation using SVG -->
-          <svg viewBox="0 0 400 400" class="w-full h-full drop-shadow-xl overflow-visible">
-            <defs>
-              <linearGradient id="globeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#A2E3ED" />
-                <stop offset="100%" stop-color="#4DB6AC" />
-              </linearGradient>
-              <linearGradient id="bookPink" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#F8BBD0" />
-                <stop offset="100%" stop-color="#F48FB1" />
-              </linearGradient>
-              <linearGradient id="bookBlue" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#B2EBF2" />
-                <stop offset="100%" stop-color="#80DEEA" />
-              </linearGradient>
-            </defs>
-
-            <!-- Shadow Base -->
-            <ellipse cx="200" cy="340" rx="140" ry="20" fill="#E2DED9" opacity="0.6" />
-
-            <!-- Globe Base & Stand -->
-            <path d="M 280 180 A 60 60 0 1 0 280 280" fill="none" stroke="#D7CCC8" stroke-width="12" stroke-linecap="round" />
-            <rect x="270" y="280" width="20" height="30" rx="5" fill="#BCAAA4" />
-            <ellipse cx="280" cy="315" rx="35" ry="10" fill="#8D6E63" />
-
-            <!-- Globe Sphere -->
-            <circle cx="280" cy="180" r="55" fill="url(#globeGrad)" />
-            <!-- Continents -->
-            <path d="M 250 160 Q 270 150 285 175 Q 270 190 250 160 Z" fill="#81C784" opacity="0.9" />
-            <path d="M 290 190 Q 310 180 320 200 Q 295 210 290 190 Z" fill="#81C784" opacity="0.9" />
-
-            <!-- Stacked Books Base -->
-            <!-- Math Book (Bottom) -->
-            <rect x="130" y="275" width="170" height="32" rx="10" fill="url(#bookPink)" />
-            <rect x="125" y="280" width="10" height="22" rx="3" fill="#E91E63" opacity="0.4" />
-            <text x="200" y="297" font-family="Fredoka" font-size="16" font-weight="bold" fill="#880E4F" text-anchor="middle" letter-spacing="2">MATH</text>
-
-            <!-- Science Book (Top) -->
-            <rect x="110" y="240" width="180" height="35" rx="10" fill="url(#bookBlue)" />
-            <rect x="105" y="245" width="10" height="25" rx="3" fill="#0097A7" opacity="0.4" />
-            <text x="195" y="263" font-family="Fredoka" font-size="17" font-weight="bold" fill="#006064" text-anchor="middle" letter-spacing="2">SCIENCE</text>
-
-            <!-- Cute Plant Pot -->
-            <rect x="80" y="180" width="55" height="50" rx="15" fill="#FFFFFF" />
-            <!-- Face on pot -->
-            <circle cx="97" cy="205" r="3" fill="#333" />
-            <circle cx="118" cy="205" r="3" fill="#333" />
-            <path d="M 104 212 Q 107 217 110 212" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" />
-            <!-- Plant Leaves -->
-            <path d="M 107 180 C 80 140 107 120 107 180 Z" fill="#66BB6A" />
-            <path d="M 107 180 C 135 140 107 120 107 180 Z" fill="#81C784" />
-
-            <!-- Pencil Glass Cup -->
-            <rect x="190" y="150" width="40" height="55" rx="10" fill="#E0F7FA" opacity="0.8" stroke="#B2EBF2" stroke-width="2" />
-            <rect x="198" y="120" width="8" height="40" rx="2" fill="#FFB74D" transform="rotate(-10 198 120)" />
-            <rect x="210" y="115" width="8" height="45" rx="2" fill="#4FC3F7" transform="rotate(5 210 115)" />
-            <rect x="220" y="122" width="6" height="38" rx="2" fill="#E1BEE7" transform="rotate(15 220 122)" />
-
-            <!-- Floating Cute Elements -->
-            <!-- Star -->
-            <path d="M 320 230 L 324 240 L 335 240 L 326 247 L 329 257 L 320 250 L 311 257 L 314 247 L 305 240 L 316 240 Z" fill="#FFD54F" />
-            <circle cx="330" cy="110" r="6" fill="#FFE082" />
-            <circle cx="70" cy="140" r="4" fill="#FF8A80" />
-            
-            <!-- Flask -->
-            <path d="M 325 285 L 335 285 L 342 305 A 10 10 0 0 1 332 318 L 328 318 A 10 10 0 0 1 318 305 Z" fill="#E1F5FE" stroke="#81D4FA" stroke-width="2" />
-            <path d="M 322 305 L 338 305 L 333 315 L 327 315 Z" fill="#29B6F6" />
-          </svg>
-
-        </div>
-      </div>
+        <p class="text-[13px] sm:text-sm text-[#7D7A8C] font-medium leading-relaxed max-w-[280px]">
+            With 10 years of tutoring experience, I create simplified notes that make textbook concepts easier to understand.
+        </p>
     </section>
 
-    <!-- SECTION 1: SCIENCE YEAR 5 CAROUSEL -->
-    <section id="year2" class="pt-4 pb-6">
-      <div class="px-6 flex items-center justify-between">
-        <div>
-          <div class="inline-flex items-center gap-2 bg-amber-100/80 px-3.5 py-1 rounded-full border border-amber-200/50">
-            <h2 class="font-display font-bold text-lg text-brand-text">Science Year 5</h2>
-            <span class="text-xs">✨</span>
-          </div>
-          <p class="text-xs text-brand-muted mt-1">Simple notes made easier to understand.</p>
-        </div>
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-5">
 
-        <!-- Navigation Arrows for Desktop/Tablet -->
-        <div class="flex items-center gap-1.5">
-          <button onclick="scrollCarousel('carouselYear5', -220)" class="w-8 h-8 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90">
-            ←
-          </button>
-          <button onclick="scrollCarousel('carouselYear5', 220)" class="w-8 h-8 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90">
-            →
-          </button>
-        </div>
-      </div>
+        <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-1.5">
+                <span class="clay-pill-badge font-brand text-base font-bold text-[#3A3845]">
+                    Frequently Asked Questions
+                </span>
 
-      <!-- CAROUSEL TRACK -->
-      <div id="carouselYear5" class="flex gap-4 overflow-x-auto no-scrollbar px-6 pt-4 pb-4 snap-x snap-mandatory">
-        
-        <!-- CARD 1: PEACH / PLANTS -->
-        <div class="min-w-[210px] w-[210px] bg-[#FFF5EE] rounded-[28px] p-4 flex flex-col justify-between border border-orange-100/80 shadow-soft snap-start transform transition hover:-translate-y-1">
-          <div>
-            <span class="inline-block bg-orange-200/60 text-orange-800 text-[10px] font-display font-semibold px-2.5 py-0.5 rounded-full mb-2">
-              Unit 1
-            </span>
-            <div class="h-28 flex items-center justify-center my-1">
-              <!-- 3D Clay Plant Illustration -->
-              <svg viewBox="0 0 120 120" class="w-24 h-24">
-                <ellipse cx="60" cy="100" rx="35" ry="8" fill="#E2D0C3" />
-                <path d="M 40 95 C 40 70 80 70 80 95 Z" fill="#8D6E63" />
-                <path d="M 60 75 L 60 45" stroke="#4CAF50" stroke-width="6" stroke-linecap="round" />
-                <!-- Leaves -->
-                <path d="M 60 55 C 30 35 40 15 60 45 Z" fill="#66BB6A" />
-                <path d="M 60 55 C 90 35 80 15 60 45 Z" fill="#81C784" />
-                <!-- Magnifying Glass -->
-                <circle cx="80" cy="50" r="16" fill="none" stroke="#4FC3F7" stroke-width="5" />
-                <path d="M 92 62 L 105 75" stroke="#FF7043" stroke-width="6" stroke-linecap="round" />
-              </svg>
+                <svg class="w-5 h-5 text-[#E8A382]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="12" y1="3" x2="12" y2="7"/>
+                    <line x1="18" y1="6" x2="15" y2="9"/>
+                    <line x1="6" y1="6" x2="9" y2="9"/>
+                </svg>
             </div>
-            <h3 class="font-display font-bold text-base text-brand-text">Plants</h3>
-            <p class="text-[11px] text-brand-muted leading-tight mt-1">Learn about plants and their needs.</p>
-          </div>
-          <div class="mt-4 pt-2 border-t border-orange-100/60">
-            <div class="font-display font-bold text-sm text-brand-text mb-2">RM3.90</div>
-            <a href="#TOYYIBPAY-LINK-UNIT1" class="block w-full text-center bg-[#E8A3A8] hover:bg-rose-400 text-white font-display font-medium text-xs py-2 rounded-xl shadow-sm transition active:scale-95">
-              BUY NOW
-            </a>
-          </div>
         </div>
 
-        <!-- CARD 2: LAVENDER / ANIMALS -->
-        <div class="min-w-[210px] w-[210px] bg-[#F3F0FD] rounded-[28px] p-4 flex flex-col justify-between border border-purple-100/80 shadow-soft snap-start transform transition hover:-translate-y-1">
-          <div>
-            <span class="inline-block bg-purple-200/60 text-purple-800 text-[10px] font-display font-semibold px-2.5 py-0.5 rounded-full mb-2">
-              Unit 2
-            </span>
-            <div class="h-28 flex items-center justify-center my-1">
-              <!-- 3D Clay Bunny Illustration -->
-              <svg viewBox="0 0 120 120" class="w-24 h-24">
-                <ellipse cx="60" cy="100" rx="30" ry="7" fill="#D7D3E8" />
-                <!-- Bunny Body & Head -->
-                <circle cx="60" cy="75" r="22" fill="#FFFFFF" />
-                <circle cx="60" cy="52" r="18" fill="#FFFFFF" />
-                <!-- Ears -->
-                <ellipse cx="52" cy="28" rx="5" ry="14" fill="#FFFFFF" transform="rotate(-10 52 28)" />
-                <ellipse cx="52" cy="28" rx="2.5" ry="10" fill="#FFCDD2" transform="rotate(-10 52 28)" />
-                <ellipse cx="68" cy="28" rx="5" ry="14" fill="#FFFFFF" transform="rotate(10 68 28)" />
-                <ellipse cx="68" cy="28" rx="2.5" ry="10" fill="#FFCDD2" transform="rotate(10 68 28)" />
-                <!-- Face -->
-                <circle cx="54" cy="50" r="2" fill="#333" />
-                <circle cx="66" cy="50" r="2" fill="#333" />
-                <ellipse cx="60" cy="54" rx="2" ry="1.5" fill="#FF8A80" />
-              </svg>
+        <div class="flex flex-col gap-3">
+
+            <div class="clay-card bg-white overflow-hidden transition-all duration-300">
+                <button class="faq-btn w-full flex items-center justify-between p-4 text-left focus:outline-none" aria-expanded="false">
+                    <span class="font-brand text-[14px] font-bold text-[#3A3845] pr-4">
+                        How will I receive my purchase?
+                    </span>
+
+                    <span class="faq-icon text-[#EAA3A7] font-bold text-xl leading-none transition-transform duration-300">
+                        +
+                    </span>
+                </button>
+
+                <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="p-4 pt-0 text-[11px] text-[#7D7A8C] font-medium leading-relaxed">
+                        All our products are digital. Once your payment is successful, you’ll receive access to your purchase. No physical books or printed materials will be delivered.
+                    </div>
+                </div>
             </div>
-            <h3 class="font-display font-bold text-base text-brand-text">Animals</h3>
-            <p class="text-[11px] text-brand-muted leading-tight mt-1">Explore different animals and their characteristics.</p>
-          </div>
-          <div class="mt-4 pt-2 border-t border-purple-100/60">
-            <div class="font-display font-bold text-sm text-brand-text mb-2">RM3.90</div>
-            <a href="#TOYYIBPAY-LINK-UNIT2" class="block w-full text-center bg-[#B4A0E5] hover:bg-purple-500 text-white font-display font-medium text-xs py-2 rounded-xl shadow-sm transition active:scale-95">
-              BUY NOW
-            </a>
-          </div>
-        </div>
 
-        <!-- CARD 3: MINT / HUMANS -->
-        <div class="min-w-[210px] w-[210px] bg-[#EBF6F2] rounded-[28px] p-4 flex flex-col justify-between border border-emerald-100/80 shadow-soft snap-start transform transition hover:-translate-y-1">
-          <div>
-            <span class="inline-block bg-emerald-200/60 text-emerald-800 text-[10px] font-display font-semibold px-2.5 py-0.5 rounded-full mb-2">
-              Unit 3
-            </span>
-            <div class="h-28 flex items-center justify-center my-1">
-              <!-- 3D Clay Human Boy Illustration -->
-              <svg viewBox="0 0 120 120" class="w-24 h-24">
-                <ellipse cx="60" cy="100" rx="30" ry="7" fill="#C8E6C9" />
-                <!-- Shirt -->
-                <path d="M 40 95 L 40 75 C 40 68 80 68 80 75 L 80 95 Z" fill="#81D4FA" />
-                <!-- Head -->
-                <circle cx="60" cy="52" r="18" fill="#FFCC80" />
-                <!-- Hair -->
-                <path d="M 42 50 C 42 30 78 30 78 50 C 70 38 50 38 42 50 Z" fill="#5D4037" />
-                <!-- Heart Icon -->
-                <path d="M 85 50 C 85 45 92 42 95 47 C 98 42 105 45 105 50 C 105 58 95 63 95 63 C 95 63 85 58 85 50 Z" fill="#FF5252" />
-              </svg>
+            <div class="clay-card bg-white overflow-hidden transition-all duration-300">
+                <button class="faq-btn w-full flex items-center justify-between p-4 text-left focus:outline-none" aria-expanded="false">
+                    <span class="font-brand text-[14px] font-bold text-[#3A3845] pr-4">
+                        Are the materials printable?
+                    </span>
+
+                    <span class="faq-icon text-[#EAA3A7] font-bold text-xl leading-none transition-transform duration-300">
+                        +
+                    </span>
+                </button>
+
+                <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="p-4 pt-0 text-[11px] text-[#7D7A8C] font-medium leading-relaxed">
+                        Most of our notes are provided as PDF files and can be printed for personal use. Presentation slides are provided through Canva and can be accessed online. Please check the product description for the format of each resource.
+                    </div>
+                </div>
             </div>
-            <h3 class="font-display font-bold text-base text-brand-text">Humans</h3>
-            <p class="text-[11px] text-brand-muted leading-tight mt-1">Discover the basic parts and needs of the human body.</p>
-          </div>
-          <div class="mt-4 pt-2 border-t border-emerald-100/60">
-            <div class="font-display font-bold text-sm text-brand-text mb-2">RM3.90</div>
-            <a href="#TOYYIBPAY-LINK-UNIT3" class="block w-full text-center bg-[#72C8A9] hover:bg-emerald-600 text-white font-display font-medium text-xs py-2 rounded-xl shadow-sm transition active:scale-95">
-              BUY NOW
-            </a>
-          </div>
-        </div>
 
-        <!-- CARD 4: YELLOW / LIVING THINGS -->
-        <div class="min-w-[210px] w-[210px] bg-[#FFF8E7] rounded-[28px] p-4 flex flex-col justify-between border border-amber-100/80 shadow-soft snap-start transform transition hover:-translate-y-1">
-          <div>
-            <span class="inline-block bg-amber-200/60 text-amber-800 text-[10px] font-display font-semibold px-2.5 py-0.5 rounded-full mb-2">
-              Unit 4
-            </span>
-            <div class="h-28 flex items-center justify-center my-1">
-              <svg viewBox="0 0 120 120" class="w-24 h-24">
-                <circle cx="60" cy="50" r="15" fill="#FFE082" />
-                <path d="M 60 75 L 60 95" stroke="#81C784" stroke-width="5" stroke-linecap="round" />
-                <circle cx="60" cy="95" r="10" fill="#A1887F" />
-              </svg>
+            <div class="clay-card bg-white overflow-hidden transition-all duration-300">
+                <button class="faq-btn w-full flex items-center justify-between p-4 text-left focus:outline-none" aria-expanded="false">
+                    <span class="font-brand text-[14px] font-bold text-[#3A3845] pr-4">
+                        Who are these resources for?
+                    </span>
+
+                    <span class="faq-icon text-[#EAA3A7] font-bold text-xl leading-none transition-transform duration-300">
+                        +
+                    </span>
+                </button>
+
+                <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="p-4 pt-0 text-[11px] text-[#7D7A8C] font-medium leading-relaxed">
+                        Our resources are designed for students, homeschool parents, and tutors.
+                    </div>
+                </div>
             </div>
-            <h3 class="font-display font-bold text-base text-brand-text">Living Things</h3>
-            <p class="text-[11px] text-brand-muted leading-tight mt-1">Understand living vs non-living characteristics.</p>
-          </div>
-          <div class="mt-4 pt-2 border-t border-amber-100/60">
-            <div class="font-display font-bold text-sm text-brand-text mb-2">RM3.90</div>
-            <a href="#TOYYIBPAY-LINK-UNIT4" class="block w-full text-center bg-[#F3B755] hover:bg-amber-600 text-white font-display font-medium text-xs py-2 rounded-xl shadow-sm transition active:scale-95">
-              BUY NOW
-            </a>
-          </div>
+
         </div>
-
-      </div>
-
-      <!-- Carousel Pagination Dots -->
-      <div class="flex justify-center gap-1.5 mt-1">
-        <span class="w-2 h-2 rounded-full bg-brand-pink"></span>
-        <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
-        <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
-        <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
-      </div>
     </section>
 
-    <!-- SECTION 2: SAINS TINGKATAN 2 CAROUSEL -->
-    <section id="form2" class="pt-2 pb-6">
-      <div class="px-6 flex items-center justify-between">
-        <div>
-          <div class="inline-flex items-center gap-2 bg-purple-100/80 px-3.5 py-1 rounded-full border border-purple-200/50">
-            <h2 class="font-display font-bold text-lg text-brand-text">Sains Tingkatan 2</h2>
-            <span class="text-xs">⚡</span>
-          </div>
-          <p class="text-xs text-brand-muted mt-1">Build stronger concepts, one chapter at a time.</p>
-        </div>
+    <!-- FOOTER -->
+    <footer class="pt-8 pb-4 text-center relative">
 
-        <!-- Navigation Arrows -->
-        <div class="flex items-center gap-1.5">
-          <button onclick="scrollCarousel('carouselForm2', -220)" class="w-8 h-8 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90">
-            ←
-          </button>
-          <button onclick="scrollCarousel('carouselForm2', 220)" class="w-8 h-8 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-50 active:scale-90">
-            →
-          </button>
-        </div>
-      </div>
-
-      <!-- CAROUSEL TRACK -->
-      <div id="carouselForm2" class="flex gap-4 overflow-x-auto no-scrollbar px-6 pt-4 pb-4 snap-x snap-mandatory">
-        
-        <!-- CARD 1: PINK / MICROSCOPE -->
-        <div class="min-w-[210px] w-[210px] bg-[#FDF0F1] rounded-[28px] p-4 flex flex-col justify-between border border-rose-100/80 shadow-soft snap-start transform transition hover:-translate-y-1">
-          <div>
-            <span class="inline-block bg-rose-200/60 text-rose-800 text-[10px] font-display font-semibold px-2.5 py-0.5 rounded-full mb-2">
-              Bab 1
+        <div class="flex items-center justify-center gap-1 mb-1">
+            <span class="font-brand text-lg font-bold text-[#3A3845]">
+                by Cikgu Myra
             </span>
-            <div class="h-28 flex items-center justify-center my-1">
-              <!-- 3D Clay Microscope Illustration -->
-              <svg viewBox="0 0 120 120" class="w-24 h-24">
-                <ellipse cx="60" cy="100" rx="30" ry="6" fill="#E2D0C3" />
-                <!-- Base & Arm -->
-                <rect x="45" y="90" width="30" height="8" rx="3" fill="#90A4AE" />
-                <path d="M 68 90 L 68 55 C 68 45 52 45 52 55" fill="none" stroke="#78909C" stroke-width="7" stroke-linecap="round" />
-                <!-- Eyepiece & Lens -->
-                <rect x="46" y="40" width="12" height="30" rx="3" fill="#64B5F6" transform="rotate(15 46 40)" />
-                <circle cx="60" cy="75" r="8" fill="#E0E0E0" />
-              </svg>
-            </div>
-            <h3 class="font-display font-bold text-base text-brand-text">Pengenalan kepada Sains</h3>
-            <p class="text-[11px] text-brand-muted leading-tight mt-1">Asas sains dan kaedah saintifik.</p>
-          </div>
-          <div class="mt-4 pt-2 border-t border-rose-100/60">
-            <div class="font-display font-bold text-sm text-brand-text mb-2">RM3.90</div>
-            <a href="#TOYYIBPAY-LINK-BAB1" class="block w-full text-center bg-[#E8A3A8] hover:bg-rose-400 text-white font-display font-medium text-xs py-2 rounded-xl shadow-sm transition active:scale-95">
-              BUY NOW
-            </a>
-          </div>
+
+            <svg class="w-4 h-4 text-[#EAA3A7] fill-current" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
         </div>
 
-        <!-- CARD 2: LAVENDER / JIRIM -->
-        <div class="min-w-[210px] w-[210px] bg-[#F3F0FD] rounded-[28px] p-4 flex flex-col justify-between border border-purple-100/80 shadow-soft snap-start transform transition hover:-translate-y-1">
-          <div>
-            <span class="inline-block bg-purple-200/60 text-purple-800 text-[10px] font-display font-semibold px-2.5 py-0.5 rounded-full mb-2">
-              Bab 2
-            </span>
-            <div class="h-28 flex items-center justify-center my-1">
-              <!-- 3D Flask Illustration -->
-              <svg viewBox="0 0 120 120" class="w-24 h-24">
-                <ellipse cx="60" cy="100" rx="25" ry="6" fill="#D7D3E8" />
-                <path d="M 52 45 L 68 45 L 82 85 A 8 8 0 0 1 74 95 L 46 95 A 8 8 0 0 1 38 85 Z" fill="#E1BEE7" opacity="0.8" stroke="#BA68C8" stroke-width="3" />
-                <path d="M 42 80 L 78 80 L 74 92 L 46 92 Z" fill="#AB47BC" />
-                <circle cx="55" cy="70" r="3" fill="#FFF" />
-                <circle cx="65" cy="65" r="2" fill="#FFF" />
-              </svg>
-            </div>
-            <h3 class="font-display font-bold text-base text-brand-text">Jirim</h3>
-            <p class="text-[11px] text-brand-muted leading-tight mt-1">Ciri-ciri jirim dan perubahannya.</p>
-          </div>
-          <div class="mt-4 pt-2 border-t border-purple-100/60">
-            <div class="font-display font-bold text-sm text-brand-text mb-2">RM3.90</div>
-            <a href="#TOYYIBPAY-LINK-BAB2" class="block w-full text-center bg-[#B4A0E5] hover:bg-purple-500 text-white font-display font-medium text-xs py-2 rounded-xl shadow-sm transition active:scale-95">
-              BUY NOW
-            </a>
-          </div>
-        </div>
+        <p class="text-xs font-bold text-[#3A3845] mb-1">
+            Simplified Learning Materials
+        </p>
 
-        <!-- CARD 3: MINT / TENAGA -->
-        <div class="min-w-[210px] w-[210px] bg-[#EBF6F2] rounded-[28px] p-4 flex flex-col justify-between border border-emerald-100/80 shadow-soft snap-start transform transition hover:-translate-y-1">
-          <div>
-            <span class="inline-block bg-emerald-200/60 text-emerald-800 text-[10px] font-display font-semibold px-2.5 py-0.5 rounded-full mb-2">
-              Bab 3
-            </span>
-            <div class="h-28 flex items-center justify-center my-1">
-              <!-- 3D Atom Illustration -->
-              <svg viewBox="0 0 120 120" class="w-24 h-24">
-                <circle cx="60" cy="60" r="10" fill="#FF7043" />
-                <ellipse cx="60" cy="60" rx="35" ry="12" fill="none" stroke="#4FC3F7" stroke-width="3" transform="rotate(30 60 60)" />
-                <ellipse cx="60" cy="60" rx="35" ry="12" fill="none" stroke="#81C784" stroke-width="3" transform="rotate(-30 60 60)" />
-              </svg>
-            </div>
-            <h3 class="font-display font-bold text-base text-brand-text">Tenaga</h3>
-            <p class="text-[11px] text-brand-muted leading-tight mt-1">Jenis tenaga dan sumber tenaga.</p>
-          </div>
-          <div class="mt-4 pt-2 border-t border-emerald-100/60">
-            <div class="font-display font-bold text-sm text-brand-text mb-2">RM3.90</div>
-            <a href="#TOYYIBPAY-LINK-BAB3" class="block w-full text-center bg-[#72C8A9] hover:bg-emerald-600 text-white font-display font-medium text-xs py-2 rounded-xl shadow-sm transition active:scale-95">
-              BUY NOW
-            </a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Carousel Pagination Dots -->
-      <div class="flex justify-center gap-1.5 mt-1">
-        <span class="w-2 h-2 rounded-full bg-brand-pink"></span>
-        <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
-        <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
-      </div>
-    </section>
-
-    <!-- ABOUT ME BANNER SECTION -->
-    <section id="about" class="px-6 py-4">
-      <div class="bg-gradient-to-br from-[#F5EEF8] to-[#EFEBF9] rounded-[32px] p-5 border border-purple-100/60 shadow-soft relative overflow-hidden flex items-center gap-4">
-        
-        <!-- Teacher Avatar SVG -->
-        <div class="w-24 h-24 flex-shrink-0 relative">
-          <svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-md">
-            <!-- Hijab Pink -->
-            <path d="M 60 20 C 35 20 25 45 25 75 C 25 95 35 105 60 105 C 85 105 95 95 95 75 C 95 45 85 20 60 20 Z" fill="#F48FB1" />
-            <!-- Face -->
-            <ellipse cx="60" cy="58" rx="20" ry="22" fill="#FFCC80" />
-            <!-- Eyes & Smile -->
-            <circle cx="52" cy="56" r="2.5" fill="#333" />
-            <circle cx="68" cy="56" r="2.5" fill="#333" />
-            <path d="M 56 66 Q 60 70 64 66" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" />
-            <!-- Cheeks -->
-            <circle cx="48" cy="62" r="3" fill="#FF8A80" opacity="0.6" />
-            <circle cx="72" cy="62" r="3" fill="#FF8A80" opacity="0.6" />
-            <!-- Inner Hijab Wrap -->
-            <path d="M 40 48 C 40 38 80 38 80 48 C 80 42 40 42 40 48 Z" fill="#F8BBD0" />
-          </svg>
-        </div>
-
-        <div class="flex-1">
-          <div class="flex items-center gap-1">
-            <h3 class="font-display font-bold text-base text-brand-text">About Me</h3>
-            <span class="text-xs">💕</span>
-          </div>
-          <h4 class="font-display font-bold text-lg text-brand-text -mt-1">Hi, I’m Cikgu Myra.</h4>
-          <p class="text-[11px] text-brand-muted leading-relaxed mt-1">
-            Simple learning materials created to make studying easier, clearer and more enjoyable.
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- GET IN TOUCH SECTION -->
-    <section id="contact" class="px-6 py-4">
-      <div class="bg-[#F6F8F3] rounded-[32px] p-5 border border-emerald-100/50 relative">
-        <div class="flex items-center gap-1.5 mb-1">
-          <h3 class="font-display font-bold text-lg text-brand-text">Get in Touch</h3>
-          <span class="text-xs">🪄</span>
-        </div>
-        <p class="text-xs text-brand-muted mb-4">Have question?</p>
-
-        <div class="space-y-2.5">
-          <!-- Email Button Row -->
-          <a href="mailto:cikgumyra@gmail.com" class="flex items-center justify-between bg-white px-4 py-3 rounded-2xl shadow-sm border border-gray-100/80 hover:bg-gray-50 transition">
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-xl bg-rose-100 flex items-center justify-center text-rose-500">
-                ✉️
-              </div>
-              <div>
-                <div class="text-[10px] text-brand-muted font-medium">Email</div>
-                <div class="text-xs font-semibold text-brand-text">cikgumyra@gmail.com</div>
-              </div>
-            </div>
-            <span class="text-gray-300 text-xs">›</span>
-          </a>
-
-          <!-- TikTok Button Row -->
-          <a href="https://tiktok.com/@bycikgumyra" target="_blank" class="flex items-center justify-between bg-white px-4 py-3 rounded-2xl shadow-sm border border-gray-100/80 hover:bg-gray-50 transition">
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-xl bg-teal-100 flex items-center justify-center text-teal-600">
-                🎵
-              </div>
-              <div>
-                <div class="text-[10px] text-brand-muted font-medium">TikTok</div>
-                <div class="text-xs font-semibold text-brand-text">@bycikgumyra</div>
-              </div>
-            </div>
-            <span class="text-gray-300 text-xs">›</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER SECTION -->
-    <footer class="mt-4 pt-6 pb-8 text-center relative overflow-hidden">
-      <!-- Decorative Wavy Background Shape -->
-      <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-orange-100/30 to-transparent -z-10"></div>
-
-      <div class="flex items-center justify-center gap-1 font-display font-bold text-lg text-brand-text">
-        <span>by Cikgu Myra</span>
-        <span class="text-brand-pink text-sm">💕</span>
-      </div>
-      <p class="text-xs font-medium text-brand-text/80 mt-1">Simplified Learning Materials</p>
-      <p class="text-[10px] text-brand-muted mt-0.5">Notes • Slides • Exercises</p>
+        <p class="text-[10px] text-[#7D7A8C] font-medium">
+            Notes • Slides • Exercises
+        </p>
     </footer>
 
-  </div>
+</div>
 
-  <!-- JAVASCRIPT FOR CAROUSEL SCROLL & MENU -->
-  <script>
-    function scrollCarousel(id, offset) {
-      const carousel = document.getElementById(id);
-      carousel.scrollBy({ left: offset, behavior: 'smooth' });
-    }
+<!-- JAVASCRIPT LOGIC -->
+<script>
 
-    function toggleMenu() {
-      const menu = document.getElementById('navMenu');
-      menu.classList.toggle('hidden');
-      menu.classList.toggle('flex');
+    // ========================================
+    // IMAGE ASSETS (Central Config)
+    // ========================================
+    const IMAGE_ASSETS = {
+        hero: "/images/hero.webp",
+        cikguMyra: "/images/cikgu-myra.webp"
+    };
+
+    // ========================================
+    // PRODUCT DATA
+    // ========================================
+    const PRODUCTS = [
+
+        // YEAR 5 (Units 2-10)
+        {
+            id: "y5-u2",
+            title: "Humans",
+            category: "Science Year 5",
+            unit: "Unit 2",
+            description: "Discover the basic parts and needs of the human body.",
+            price: "RM3.90",
+            image: "/images/products/year5-humans.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#E8F8F0]",
+                pillBg: "bg-[#D2F0E2]",
+                pillText: "text-[#4B8C6E]",
+                btn: "clay-btn-mint"
+            }
+        },
+
+        {
+            id: "y5-u3",
+            title: "Animals",
+            category: "Science Year 5",
+            unit: "Unit 3",
+            description: "Explore different animals and their characteristics.",
+            price: "RM3.90",
+            image: "/images/products/year5-animals.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#F0ECFC]",
+                pillBg: "bg-[#E0D7F7]",
+                pillText: "text-[#6D5CA3]",
+                btn: "clay-btn-purple"
+            }
+        },
+
+        {
+            id: "y5-u4",
+            title: "Plants",
+            category: "Science Year 5",
+            unit: "Unit 4",
+            description: "Learn about plants and their needs.",
+            price: "RM3.90",
+            image: "/images/products/year5-plants.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#FDF0E6]",
+                pillBg: "bg-[#F5DFD0]",
+                pillText: "text-[#8C6C58]",
+                btn: "clay-btn-pink"
+            }
+        },
+
+        {
+            id: "y5-u5",
+            title: "Electricity",
+            category: "Science Year 5",
+            unit: "Unit 5",
+            description: "Learn about circuits and electrical energy.",
+            price: "RM3.90",
+            image: "/images/products/year5-electricity.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#FAF4DF]",
+                pillBg: "bg-[#F5E8C4]",
+                pillText: "text-[#8C763F]",
+                btn: "clay-btn-yellow"
+            }
+        },
+
+        {
+            id: "y5-u6",
+            title: "Heat",
+            category: "Science Year 5",
+            unit: "Unit 6",
+            description: "Understanding temperature and heat transfer.",
+            price: "RM3.90",
+            image: "/images/products/year5-heat.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#FDECEE]",
+                pillBg: "bg-[#F8D4D7]",
+                pillText: "text-[#A8585D]",
+                btn: "clay-btn-pink"
+            }
+        },
+
+        {
+            id: "y5-u7",
+            title: "Rusting",
+            category: "Science Year 5",
+            unit: "Unit 7",
+            description: "Discover how and why materials rust.",
+            price: "RM3.90",
+            image: "/images/products/year5-rusting.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#F0ECFC]",
+                pillBg: "bg-[#E0D7F7]",
+                pillText: "text-[#6D5CA3]",
+                btn: "clay-btn-purple"
+            }
+        },
+
+        {
+            id: "y5-u8",
+            title: "Matter",
+            category: "Science Year 5",
+            unit: "Unit 8",
+            description: "Understanding different states of matter.",
+            price: "RM3.90",
+            image: "/images/products/year5-matter.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#E8F8F0]",
+                pillBg: "bg-[#D2F0E2]",
+                pillText: "text-[#4B8C6E]",
+                btn: "clay-btn-mint"
+            }
+        },
+
+        {
+            id: "y5-u9",
+            title: "Phases of the Moon",
+            category: "Science Year 5",
+            unit: "Unit 9",
+            description: "Explore the moon and constellations.",
+            price: "RM3.90",
+            image: "/images/products/year5-moon.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#FAF4DF]",
+                pillBg: "bg-[#F5E8C4]",
+                pillText: "text-[#8C763F]",
+                btn: "clay-btn-yellow"
+            }
+        },
+
+        {
+            id: "y5-u10",
+            title: "Machines",
+            category: "Science Year 5",
+            unit: "Unit 10",
+            description: "Learn about simple and complex machines.",
+            price: "RM3.90",
+            image: "/images/products/year5-machines.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#FDECEE]",
+                pillBg: "bg-[#F8D4D7]",
+                pillText: "text-[#A8585D]",
+                btn: "clay-btn-pink"
+            }
+        },
+
+        // YEAR 6 (Units 2-13)
+        {
+            id: "y6-u2",
+            title: "Humans",
+            category: "Science Year 6",
+            unit: "Unit 2",
+            description: "Reproduction and nervous system.",
+            price: "RM3.90",
+            image: "/images/products/year6-humans.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#E8F8F0]",
+                pillBg: "bg-[#D2F0E2]",
+                pillText: "text-[#4B8C6E]",
+                btn: "clay-btn-mint"
+            }
+        },
+
+        {
+            id: "y6-u3",
+            title: "Microorganisms",
+            category: "Science Year 6",
+            unit: "Unit 3",
+            description: "Types and effects of tiny living things.",
+            price: "RM3.90",
+            image: "/images/products/year6-microorganisms.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#F0ECFC]",
+                pillBg: "bg-[#E0D7F7]",
+                pillText: "text-[#6D5CA3]",
+                btn: "clay-btn-purple"
+            }
+        },
+
+        {
+            id: "y6-u4",
+            title: "Interaction among Living Things",
+            category: "Science Year 6",
+            unit: "Unit 4",
+            description: "Interactions among living things.",
+            price: "RM3.90",
+            image: "/images/products/year6-interaction.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#FDF0E6]",
+                pillBg: "bg-[#F5DFD0]",
+                pillText: "text-[#8C6C58]",
+                btn: "clay-btn-pink"
+            },
+            comingSoon: true,
+            svg: `<svg viewBox="0 0 100 100" fill="none" class="w-full h-full drop-shadow">
+                <path d="M 40 40 C 40 25 20 25 20 40 C 20 55 40 55 40 40 Z" fill="#71C5D4"/>
+                <path d="M 80 60 C 80 45 60 45 60 60 C 60 75 80 75 80 60 Z" fill="#EAA3A7"/>
+                <circle cx="28" cy="38" r="2" fill="#3A3845"/>
+                <circle cx="68" cy="58" r="2" fill="#3A3845"/>
+                <path d="M 32 38 L 36 40 L 32 42" fill="#F5D783"/>
+                <path d="M 64 58 L 60 60 L 64 62" fill="#F5D783"/>
+                <path d="M 45 45 Q 50 35 55 45 Q 50 55 45 45" fill="#E89E9E"/>
+            </svg>`
+        },
+
+        {
+            id: "y6-u5",
+            title: "Preservation and Conservation",
+            category: "Science Year 6",
+            unit: "Unit 5",
+            description: "Preservation & conservation of nature.",
+            price: "RM3.90",
+            image: "/images/products/year6-preservation.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#FAF4DF]",
+                pillBg: "bg-[#F5E8C4]",
+                pillText: "text-[#8C763F]",
+                btn: "clay-btn-yellow"
+            },
+            comingSoon: true,
+            svg: `<svg viewBox="0 0 100 100" fill="none" class="w-full h-full drop-shadow">
+                <path d="M 50 15 L 80 25 V 50 C 80 75 50 90 50 90 C 50 90 20 75 20 50 V 25 L 50 15 Z" fill="#FFEAA7"/>
+                <path d="M 50 80 V 45" stroke="#55EFC4" stroke-width="4" stroke-linecap="round"/>
+                <path d="M 50 45 C 35 35 40 65 50 60 Z" fill="#00B894"/>
+                <path d="M 50 45 C 65 35 60 65 50 60 Z" fill="#55EFC4"/>
+            </svg>`
+        },
+
+        {
+            id: "y6-u6",
+            title: "Force",
+            category: "Science Year 6",
+            unit: "Unit 6",
+            description: "Pushes, pulls and friction.",
+            price: "RM3.90",
+            image: "/images/products/year6-force.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#FDECEE]",
+                pillBg: "bg-[#F8D4D7]",
+                pillText: "text-[#A8585D]",
+                btn: "clay-btn-pink"
+            },
+            comingSoon: true,
+            svg: `<svg viewBox="0 0 100 100" fill="none" class="w-full h-full drop-shadow">
+                <path d="M 30 70 V 40 C 30 20 70 20 70 40 V 70" stroke="#FF7675" stroke-width="16" stroke-linecap="square" fill="none"/>
+                <rect x="22" y="70" width="16" height="15" fill="#DFE6E9"/>
+                <rect x="62" y="70" width="16" height="15" fill="#DFE6E9"/>
+                <path d="M 45 75 Q 50 85 55 75" stroke="#74B9FF" stroke-width="3" stroke-linecap="round" fill="none"/>
+                <path d="M 40 85 Q 50 95 60 85" stroke="#74B9FF" stroke-width="3" stroke-linecap="round" fill="none"/>
+            </svg>`
+        },
+
+        {
+            id: "y6-u7",
+            title: "Speed",
+            category: "Science Year 6",
+            unit: "Unit 7",
+            description: "Calculating speed, distance and time.",
+            price: "RM3.90",
+            image: "/images/products/year6-speed.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#E8F8F0]",
+                pillBg: "bg-[#D2F0E2]",
+                pillText: "text-[#4B8C6E]",
+                btn: "clay-btn-mint"
+            },
+            comingSoon: true,
+            svg: `<svg viewBox="0 0 100 100" fill="none" class="w-full h-full drop-shadow">
+                <path d="M 25 60 H 75 C 80 60 85 55 85 50 L 75 35 H 45 L 35 45 H 20 C 15 45 15 60 25 60 Z" fill="#0984E3"/>
+                <circle cx="35" cy="65" r="8" fill="#2D3436"/>
+                <circle cx="70" cy="65" r="8" fill="#2D3436"/>
+                <path d="M 48 37 H 70 L 75 48 H 40 L 48 37 Z" fill="#81ECEC"/>
+                <line x1="10" y1="45" x2="25" y2="45" stroke="#B2BEC3" stroke-width="3" stroke-linecap="round"/>
+                <line x1="5" y1="55" x2="20" y2="55" stroke="#B2BEC3" stroke-width="3" stroke-linecap="round"/>
+            </svg>`
+        },
+
+        {
+            id: "y6-u8",
+            title: "Food Preservation Technology",
+            category: "Science Year 6",
+            unit: "Unit 8",
+            description: "Methods to keep food fresh longer.",
+            price: "RM3.90",
+            image: "/images/products/year6-food-preservation.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#F0ECFC]",
+                pillBg: "bg-[#E0D7F7]",
+                pillText: "text-[#6D5CA3]",
+                btn: "clay-btn-purple"
+            },
+            comingSoon: true,
+            svg: `<svg viewBox="0 0 100 100" fill="none" class="w-full h-full drop-shadow">
+                <path d="M 30 40 H 70 V 80 C 70 85 65 90 50 90 C 35 90 30 85 30 80 V 40 Z" fill="#DFF9FB" opacity="0.9"/>
+                <path d="M 32 50 H 68 V 78 C 68 82 65 88 50 88 C 35 88 32 82 32 78 V 50 Z" fill="#FF7979"/>
+                <rect x="25" y="25" width="50" height="15" rx="3" fill="#D35400"/>
+                <rect x="28" y="22" width="44" height="5" rx="2" fill="#E67E22"/>
+                <rect x="40" y="55" width="20" height="20" rx="2" fill="#FFFFFF"/>
+                <circle cx="50" cy="65" r="4" fill="#FF7979"/>
+            </svg>`
+        },
+
+        {
+            id: "y6-u9",
+            title: "Waste Materials",
+            category: "Science Year 6",
+            unit: "Unit 9",
+            description: "Types of waste and management.",
+            price: "RM3.90",
+            image: "/images/products/year6-waste.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#FDF0E6]",
+                pillBg: "bg-[#F5DFD0]",
+                pillText: "text-[#8C6C58]",
+                btn: "clay-btn-pink"
+            },
+            comingSoon: true,
+            svg: `<svg viewBox="0 0 100 100" fill="none" class="w-full h-full drop-shadow">
+                <path d="M 25 35 L 30 85 C 30 90 35 95 50 95 C 65 95 70 90 70 85 L 75 35 H 25 Z" fill="#00B894"/>
+                <rect x="20" y="25" width="60" height="8" rx="4" fill="#00CEC9"/>
+                <rect x="40" y="20" width="20" height="5" rx="2" fill="#00CEC9"/>
+                <path d="M 40 60 L 50 45 L 60 60" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <path d="M 45 75 L 50 60 L 55 75" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>`
+        },
+
+        {
+            id: "y6-u10",
+            title: "Eclipses",
+            category: "Science Year 6",
+            unit: "Unit 10",
+            description: "Phenomenon of the Sun and Moon.",
+            price: "RM3.90",
+            image: "/images/products/year6-eclipses.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#FAF4DF]",
+                pillBg: "bg-[#F5E8C4]",
+                pillText: "text-[#8C763F]",
+                btn: "clay-btn-yellow"
+            },
+            comingSoon: true,
+            svg: `<svg viewBox="0 0 100 100" fill="none" class="w-full h-full drop-shadow">
+                <circle cx="50" cy="50" r="30" fill="#FDCB6E"/>
+                <circle cx="50" cy="50" r="35" stroke="#FFEAA7" stroke-width="4" fill="none" stroke-dasharray="10 10"/>
+                <circle cx="35" cy="50" r="25" fill="#2D3436"/>
+                <circle cx="25" cy="40" r="4" fill="#636E72"/>
+                <circle cx="40" cy="60" r="3" fill="#636E72"/>
+            </svg>`
+        },
+
+        {
+            id: "y6-u11",
+            title: "Galaxies",
+            category: "Science Year 6",
+            unit: "Unit 11",
+            description: "Understanding stars and Milky Way.",
+            price: "RM3.90",
+            image: "/images/products/year6-galaxy.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#FDECEE]",
+                pillBg: "bg-[#F8D4D7]",
+                pillText: "text-[#A8585D]",
+                btn: "clay-btn-pink"
+            },
+            comingSoon: true,
+            svg: `<svg viewBox="0 0 100 100" fill="none" class="w-full h-full drop-shadow">
+                <ellipse cx="50" cy="50" rx="35" ry="12" stroke="#FF7675" stroke-width="6" transform="rotate(-20 50 50)"/>
+                <circle cx="50" cy="50" r="20" fill="#A29BFE"/>
+                <path d="M 18 60 C 35 75 65 65 83 42" stroke="#FF7675" stroke-width="6" stroke-linecap="round" fill="none"/>
+                <circle cx="20" cy="30" r="2" fill="#FDCB6E"/>
+                <circle cx="80" cy="70" r="3" fill="#FDCB6E"/>
+            </svg>`
+        },
+
+        {
+            id: "y6-u12",
+            title: "Stability and Strength",
+            category: "Science Year 6",
+            unit: "Unit 12",
+            description: "Stability and strength of structures.",
+            price: "RM3.90",
+            image: "/images/products/year6-stability.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#E8F8F0]",
+                pillBg: "bg-[#D2F0E2]",
+                pillText: "text-[#4B8C6E]",
+                btn: "clay-btn-mint"
+            },
+            comingSoon: true,
+            svg: `<svg viewBox="0 0 100 100" fill="none" class="w-full h-full drop-shadow">
+                <rect x="25" y="70" width="50" height="15" rx="2" fill="#FAB1A0"/>
+                <rect x="35" y="55" width="30" height="15" rx="2" fill="#81ECEC"/>
+                <rect x="42" y="40" width="16" height="15" rx="2" fill="#55EFC4"/>
+                <polygon points="50,20 60,40 40,40" fill="#FDCB6E"/>
+            </svg>`
+        },
+
+        {
+            id: "y6-u13",
+            title: "Technology",
+            category: "Science Year 6",
+            unit: "Unit 13",
+            description: "Tools, machines, and sustainable living.",
+            price: "RM3.90",
+            image: "/images/products/year6-technology.webp",
+            paymentLink: "#",
+            styles: {
+                bg: "bg-[#F0ECFC]",
+                pillBg: "bg-[#E0D7F7]",
+                pillText: "text-[#6D5CA3]",
+                btn: "clay-btn-purple"
+            },
+            comingSoon: true,
+            svg: `<svg viewBox="0 0 100 100" fill="none" class="w-full h-full drop-shadow">
+                <rect x="25" y="35" width="50" height="40" rx="10" fill="#74B9FF"/>
+                <rect x="35" y="45" width="10" height="8" rx="2" fill="#FFFFFF"/>
+                <rect x="55" y="45" width="10" height="8" rx="2" fill="#FFFFFF"/>
+                <circle cx="40" cy="49" r="2" fill="#2D3436"/>
+                <circle cx="60" cy="49" r="2" fill="#2D3436"/>
+                <rect x="40" y="60" width="20" height="4" rx="2" fill="#0984E3"/>
+                <line x1="50" y1="35" x2="50" y2="20" stroke="#B2BEC3" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="50" cy="18" r="5" fill="#FFEAA7"/>
+                <rect x="15" y="45" width="10" height="15" rx="3" fill="#0984E3"/>
+                <rect x="75" y="45" width="10" height="15" rx="3" fill="#0984E3"/>
+            </svg>`
+        }
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // 1. Assign Static Images with fallbacks
+        document.querySelectorAll("[data-image-key]").forEach((img) => {
+            const key = img.dataset.imageKey;
+
+            if (IMAGE_ASSETS[key]) {
+                img.src = IMAGE_ASSETS[key];
+            }
+        });
+
+        // 2. Generate Product Cards Dynamically
+        const y5Container = document.getElementById('carousel-y5');
+        const y6Container = document.getElementById('carousel-y6');
+
+        let y5Count = 0;
+        let y6Count = 0;
+
+        function createProductCard(product) {
+
+            const isLocked = product.comingSoon;
+
+            let lockedOverlay = "";
+
+            let imageClass = "w-24 h-24 drop-shadow object-contain rounded-[12px] transition-all duration-300";
+
+            if (isLocked) {
+
+                lockedOverlay = `
+                    <div class="absolute inset-0 z-10 flex flex-col items-center justify-center rounded-[12px] bg-[#FAF6EF]/30 backdrop-blur-[1.5px]">
+
+                        <div class="w-10 h-10 bg-white shadow-sm rounded-full flex items-center justify-center mb-1.5 text-[#3A3845]">
+
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17 9V7c0-2.8-2.2-5-5-5S7 4.2 7 7v2c-1.7 0-3 1.3-3 3v7c0 1.7 1.3 3 3 3h10c1.7 0 3-1.3 3-3v-7c0-1.7-1.3-3-3-3zM9 7c0-1.7 1.3-3 3-3s3 1.3 3 3v2H9V7zm9 12c0 .6-.4 1-1 1H7c-.6 0-1-0.4-1-1v-7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v7z"/>
+                                <circle cx="12" cy="14" r="1.5" fill="#3A3845"/>
+                            </svg>
+
+                        </div>
+
+                        <span class="bg-[#3A3845] text-white text-[9px] font-bold px-2 py-0.5 rounded-full tracking-wide shadow-sm">
+                            LOCKED
+                        </span>
+                    </div>
+                `;
+
+                imageClass += " opacity-60 grayscale-[40%]";
+            }
+
+            // Fallback image
+            const fallbackUrl = `https://placehold.co/200x200/FFFFFF/3A3845?text=${encodeURIComponent(product.title)}`;
+
+            // Inline SVG if present, otherwise image path
+            const imageContent = product.svg
+                ? `<div class="${imageClass}">${product.svg}</div>`
+                : `<img src="${product.image}" onerror="this.onerror=null; this.src='${fallbackUrl}'" alt="${product.title}" class="${imageClass}">`;
+
+            // Watermark HTML
+            const watermarkHtml = `
+                <div class="watermark-overlay">
+                    <div class="watermark-pattern">
+
+                        <span class="watermark-text">
+                            by Cikgu Myra • Preview Only
+                        </span>
+
+                        <span class="watermark-text">
+                            by Cikgu Myra • Preview Only
+                        </span>
+
+                        <span class="watermark-text">
+                            by Cikgu Myra • Preview Only
+                        </span>
+
+                    </div>
+                </div>
+            `;
+
+            // Button HTML
+            const buttonHtml = isLocked
+                ? `<div class="clay-btn bg-[#EAE0D0] text-[#9E9AA8] w-full py-2 text-xs text-center block cursor-not-allowed shadow-none border border-[#D1C9BC]/30">
+                        COMING SOON
+                   </div>`
+                : `<a href="${product.paymentLink}" class="clay-btn ${product.styles.btn} w-full py-2 text-xs text-center block">
+                        BUY NOW
+                   </a>`;
+
+            return `
+                <div class="snap-start flex-none w-[190px] sm:w-[210px]">
+
+                    <div class="clay-card p-4 h-full flex flex-col justify-between ${product.styles.bg}">
+
+                        <div>
+
+                            <span class="inline-block px-3 py-1 rounded-full ${product.styles.pillBg} text-[10px] font-bold ${product.styles.pillText} mb-3">
+                                ${product.unit}
+                            </span>
+
+                            <div class="relative w-full h-28 flex items-center justify-center mb-2 rounded-[12px] overflow-hidden">
+
+                                ${lockedOverlay}
+
+                                ${watermarkHtml}
+
+                                ${imageContent}
+
+                            </div>
+
+                            <h3 class="font-brand text-base font-bold text-[#3A3845] mb-1 leading-snug">
+                                ${product.title}
+                            </h3>
+
+                            <p class="text-[11px] text-[#7D7A8C] font-medium leading-snug mb-3 line-clamp-2">
+                                ${product.description}
+                            </p>
+
+                        </div>
+
+                        <div>
+
+                            <div class="font-brand font-bold text-sm text-[#3A3845] mb-2">
+                                ${product.price}
+                            </div>
+
+                            ${buttonHtml}
+
+                        </div>
+
+                    </div>
+                </div>
+            `;
+        }
+
+        PRODUCTS.forEach(product => {
+
+            if (product.category === "Science Year 5" && y5Container) {
+                y5Container.innerHTML += createProductCard(product);
+                y5Count++;
+
+            } else if (product.category === "Science Year 6" && y6Container) {
+                y6Container.innerHTML += createProductCard(product);
+                y6Count++;
+            }
+
+        });
+
+        // 3. Generate Navigation Dots Dynamically
+        function generateDots(containerId, count) {
+
+            const container = document.getElementById(containerId);
+
+            if (!container) return;
+
+            let dotsHTML = '';
+
+            for (let i = 0; i < count; i++) {
+
+                let color = i === 0
+                    ? 'bg-[#E08E93] w-2 h-2'
+                    : 'bg-[#D1C9BC] w-1.5 h-1.5';
+
+                dotsHTML += `
+                    <span class="${color} rounded-full transition-all duration-300"></span>
+                `;
+            }
+
+            container.innerHTML = dotsHTML;
+        }
+
+        generateDots('dots-y5', y5Count);
+        generateDots('dots-y6', y6Count);
+
+        // 4. Hamburger Menu Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        if (menuBtn && mobileMenu) {
+
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileLinks.forEach(link => {
+
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+
+            });
+        }
+
+        // 5. FAQ Accordion Logic
+        const faqBtns = document.querySelectorAll('.faq-btn');
+
+        faqBtns.forEach(btn => {
+
+            btn.addEventListener('click', () => {
+
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('.faq-icon');
+
+                const isExpanded =
+                    btn.getAttribute('aria-expanded') === 'true';
+
+                // Close all other FAQ items
+                faqBtns.forEach(otherBtn => {
+
+                    if (otherBtn !== btn) {
+
+                        otherBtn.setAttribute('aria-expanded', 'false');
+
+                        otherBtn.nextElementSibling.style.maxHeight = null;
+
+                        otherBtn.querySelector('.faq-icon').textContent = '+';
+                    }
+
+                });
+
+                // Toggle clicked FAQ
+                if (isExpanded) {
+
+                    btn.setAttribute('aria-expanded', 'false');
+
+                    content.style.maxHeight = null;
+
+                    icon.textContent = '+';
+
+                } else {
+
+                    btn.setAttribute('aria-expanded', 'true');
+
+                    content.style.maxHeight =
+                        content.scrollHeight + "px";
+
+                    icon.textContent = '−';
+                }
+            });
+        });
+    });
+
+    // Smooth Carousel Scrolling Helper Function
+    function scrollCarousel(containerId, scrollOffset) {
+
+        const container = document.getElementById(containerId);
+
+        if (container) {
+
+            container.scrollBy({
+                left: scrollOffset,
+                behavior: 'smooth'
+            });
+        }
     }
-  </script>
+</script>
+```
+
 </body>
 </html>
